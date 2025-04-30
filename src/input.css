@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-item{
+    color:white;
+   /* border: solid black 1px;*/
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    /*border-top: 0px;
+    border-radius: 0px 0px .25rem .25rem;
+    margin: 0;
+    padding: 0;*/
+}
