@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menú de Hamburguesas</title>
-    <link rel="stylesheet" href="tailwindStyle.css">
-    <script src="/Restaurante/src/scripts/menuController.js"></script>    
+    <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
+
 </head>
 
 <body class="bg-gray-100">
@@ -15,7 +15,7 @@
     <div class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto">
         <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
         <ul id="cart-items" class="mb-4 space-y-2"></ul>
-        <p class="text-lg font-semibold">Total: $<span id="cart-total">0.00</span></p>
+        <p class="text-lg font-semibold">Total: Q<span id="cart-total">0.00</span></p>
         <button onclick="createOrder()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Crear
             Orden</button>
     </div>
@@ -34,133 +34,33 @@
         <!-- Vertical navigation menu -->
         <ul class="flex w-full h-14 bg-white shadow mb-5 items-center justify-center gap-16">
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" class="active"
-                    href="#home">Hamburguesas</a></li>
+                    href="#home" id="menu-hamburguesas">Hamburguesas</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4"
-                    href="/orden.html">Bebidas</a></li>
+                    href="#" id="menu-bebidas">Bebidas</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4"
                     href="#about ">Postres</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4"
                     href="#news">Complementos</a></li>
         </ul>
 
-        <div class="flex flex-wrap gap-3">
-            <!-- Producto -->
-            <div class="bg-white p-4 rounded shadow max-w-sm">
+         <!-- Container -->
+        <div class="flex flex-wrap gap-3" id="items-container">
+            <!--Muestra del container de un Producto -->
+            <div class="bg-white p-4 rounded shadow max-w-sm" id="item">
                 <img src="https://tse3.mm.bing.net/th/id/OIP.RRrZKc6uX4sKK7ofbFabhQHaEf?w=272&h=180&c=7&r=0&o=5&pid=1.7"
                     alt="Hamburguesa Clásica" class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa Clásica</h2>
-                <p class="mb-2 text-gray-700">$5.99</p>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
+                <h2 class="text-xl font-semibold mb-2" id="i-nombre">Hamburguesa Clásica</h2>
+                <p class="mb-2 text-gray-700" id="i-precio">$5.99</p>
+                <button 
                     class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
                 <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
                     class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
             </div>
 
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a107ed30f1bccd9f7327d294b244e4d8" alt="Hamburguesa BBQ"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa BBQ</h2>
-                <p class="mb-2 text-gray-700">$6.99</p>
-                <button onclick="addToCart('Hamburguesa BBQ', 6.99)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
-            </div>
-
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a9b48ad4df10d906fa7ed74d15f266a8" alt="Hamburguesa Vegana"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa Vegana</h2>
-                <p class="mb-2 text-gray-700">$7.49</p>
-                <button onclick="addToCart('Hamburguesa Vegana', 7.49)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
-
-            </div>
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a107ed30f1bccd9f7327d294b244e4d8" alt="Hamburguesa BBQ"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa BBQ</h2>
-                <p class="mb-2 text-gray-700">$6.99</p>
-                <button onclick="addToCart('Hamburguesa BBQ', 6.99)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
-            </div>
-
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a9b48ad4df10d906fa7ed74d15f266a8" alt="Hamburguesa Vegana"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa Vegana</h2>
-                <p class="mb-2 text-gray-700">$7.49</p>
-                <button onclick="addToCart('Hamburguesa Vegana', 7.49)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
-            </div>
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a107ed30f1bccd9f7327d294b244e4d8" alt="Hamburguesa BBQ"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa BBQ</h2>
-                <p class="mb-2 text-gray-700">$6.99</p>
-                <button onclick="addToCart('Hamburguesa BBQ', 6.99)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">Cambiar y agregar</button>
-            </div>
-
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://bing.com/th?id=OSK.a9b48ad4df10d906fa7ed74d15f266a8" alt="Hamburguesa Vegana"
-                    class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa Vegana</h2>
-                <p class="mb-2 text-gray-700">$7.49</p>
-                <button onclick="addToCart('Hamburguesa Vegana', 7.49)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-            </div>
-            <div class="bg-white p-4 rounded shadow max-w-sm">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.y5v7yOFnuRbY87YfVYNexwHaFa?w=252&h=184&c=7&r=0&o=5&pid=1.7"
-                    alt="Hamburguesa Clásica" class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2">Hamburguesa Clásica</h2>
-                <p class="mb-2 text-gray-700">$5.99</p>
-                <button onclick="addToCart('Hamburguesa Clásica', 5.99)"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Agregar al carrito</button>
-            </div>
-        </div>
     </div>
 
-
-    <script>
-        const cartItems = [];
-        let total = 0;
-
-        function addToCart(name, price) {
-            cartItems.push({ name, price });
-            total += price;
-            renderCart();
-        }
-
-        function renderCart() {
-            const list = document.getElementById('cart-items');
-            const totalDisplay = document.getElementById('cart-total');
-            list.innerHTML = '';
-            cartItems.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-                list.appendChild(li);
-            });
-            totalDisplay.textContent = total.toFixed(2);
-        }
-
-        function createOrder() {
-            // Guardamos la orden en localStorage
-            localStorage.setItem('order', JSON.stringify({ items: cartItems, total: total }));
-
-            // Redirigimos a la página de la orden
-            window.location.href = 'orden.html';
-        }
-    </script>
-
+    <script src="/Restaurante/src/scripts/carritoScript.js"></script>  
+    <script  src="/Restaurante/src/scripts/menuController.js"></script>
 </body>
 
 </html>
