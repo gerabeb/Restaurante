@@ -40,6 +40,50 @@ let bebidas=[
     }
 ];
 
+let entradas=[
+    {
+        "name": "Papas fritas",
+        "price": 7,
+        "img-src": "https://recetinas.com/wp-content/uploads/2022/10/patatas-fritas.jpg"
+    },
+    {
+        "name": "Sho papas",
+        "price": 20,
+        "img-src": "https://tse2.mm.bing.net/th/id/OIP.UuDOEH1EbEiJtT1pn5SNBAHaE9?rs=1&pid=ImgDetMain"
+    }
+];
+
+let combos=[
+    {
+        "name": "Papas y coca",
+        "price": 15,
+        "img-src": "https://tse2.mm.bing.net/th/id/OIP.xt-Hexwh8BvTCW05OaleMgHaHa?rs=1&pid=ImgDetMain"
+    },
+    {
+        "name": "Papas y cerveza",
+        "price": 25,
+        "img-src": "https://img.freepik.com/fotos-premium/cerveza-papas-fritas_250469-15878.jpg"
+    },
+    {
+        "name": "Papas y agua",
+        "price": 10,
+        "img-src": "https://static.vecteezy.com/system/resources/previews/004/183/958/large_2x/glass-of-water-and-french-fries-isolated-on-white-background-photo.jpg"
+    }
+];
+
+let extras=[
+    {
+        "name": "→Extra pepinillo",
+        "price": 3,
+        "img-src": "https://image.freepik.com/foto-gratis/rodajas-pepinillo-fresco-aislado-sobre-fondo-blanco_185193-47920.jpg"
+    },
+    {
+        "name": "→Extra carne",
+        "price": 7,
+        "img-src": "https://tse1.mm.bing.net/th/id/OIP.2svN3nVwJXTpTF2vy4BE3gAAAA?rs=1&pid=ImgDetMain"
+    }
+];
+
 localStorage.setItem("hamburguersData", JSON.stringify(hamburgers))
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,9 +103,17 @@ document.addEventListener('DOMContentLoaded', () => {
             newItem.querySelector("p").innerHTML = "Q " + newItemPrice;
             newItem.querySelector("h2").innerHTML = category[k].name;
             container.appendChild(newItem);
-            newItem.addEventListener('click', function(){
-                console.log("Mandar datos al carrito de "+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
-                addToCart(newItem.querySelector("h2").innerHTML, newItemPrice );
+
+            //obtener botones
+            const buttons = newItem.getElementsByTagName('button');
+            buttons[0].addEventListener('click', function(){
+                //console.log("Agregar al carrito "+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
+                addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice );
+            });
+            buttons[1].addEventListener('click', function(){
+                console.log("Modificar producto"+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
+                const userInput = prompt('Que quieres modificar?');
+                addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}` );
             })
         }
     }
@@ -75,21 +127,34 @@ document.addEventListener('DOMContentLoaded', () => {
     ShowCategoryProducts(hamburgers);
 
 
-    document.getElementById('menu-bebidas').addEventListener('click', function(){
-        console.log("Elemento <a> si detecta click")
 
-        ClearContainer();
-        ShowCategoryProducts(bebidas);
-
-    });
-
+    //Mostras menus
     document.getElementById('menu-hamburguesas').addEventListener('click', function(){
         console.log("Elemento <a> si detecta click")
-
         ClearContainer();
         ShowCategoryProducts(hamburgers);
-
     });
 
-    
+    document.getElementById('menu-bebidas').addEventListener('click', function(){
+        console.log("Elemento <a> si detecta click")
+        ClearContainer();
+        ShowCategoryProducts(bebidas);
+    });
+
+    document.getElementById('menu-entradas').addEventListener('click', function(){
+        console.log("Elemento <a> si detecta click")
+
+        ClearContainer();
+        ShowCategoryProducts(entradas);
+    });
+    document.getElementById('menu-combos').addEventListener('click', function(){
+        console.log("Elemento <a> si detecta click")
+        ClearContainer();
+        ShowCategoryProducts(combos);
+    });
+    document.getElementById('menu-extras').addEventListener('click', function(){
+        console.log("Elemento <a> si detecta click")
+        ClearContainer();
+        ShowCategoryProducts(extras);
+    });
 });

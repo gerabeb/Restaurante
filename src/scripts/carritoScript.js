@@ -1,31 +1,46 @@
 const cartItems = [];
 let total = 0;
 
-function addToCart(name, price) {
+function addToCart(name, price, nota="null") {
     //---------------------Acceder a el array de elementos en memoria solo esta de prueba
-    const data = localStorage.getItem("hamburguersData");
-    console.log(typeof (JSON.parse(data)))
-    const obj = JSON.parse(data)
-    console.log(obj)
-    console.log(data[0])
-    console.log(obj[0].name)
+    //const data = localStorage.getItem("hamburguersData");
+    //console.log(typeof (JSON.parse(data)))
+    //const obj = JSON.parse(data)
+    //console.log(obj)
+    //console.log(data[0])
+    //console.log(obj[0].name)
     //-------------------------------
     cartItems.push({ name, price });
     total += parseFloat(price);
-    renderCart();
+    console.log(`La nota es ` +nota)
+    renderCart(nota);
 }
 
-function renderCart() {
+function renderCart(nota = "null") {
     const list = document.getElementById('cart-items');
     const totalDisplay = document.getElementById('cart-total');
     list.innerHTML = '';
     cartItems.forEach(item => {
         const li = document.createElement('li');
-        console.log("carrito price: " +item.price  )
-        li.textContent = `${item.name} Q ${item.price}`;
+        li.innerHTML = `${item.name} Q ${item.price}`;
         list.appendChild(li);
+        //-------------------
+        /*if(nota!="null"){
+            const notaItem = document.createElement('li');
+            notaItem.textContent = ">>>"+nota;
+            notaItem.classList.add("text-red-700");
+            nota = "null";
+            cartItems.push({ nota, nota });
+            li.appendChild(notaItem);
+        }*/
+        //const nota = document.createElement('li');
+        //nota.textContent = "Sin algo ok";
+        //list.appendChild(nota);
+        //--------------------
+        
     });
-    console.log(total+ "como total")
+    console.log(cartItems)
+
     totalDisplay.textContent = parseFloat( total).toFixed(2);
 }
 
