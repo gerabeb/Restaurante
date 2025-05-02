@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante - Mesas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/Restaurante/src/scripts/mesas.js"></script>
+    <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
+
+
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navbar con hamburguesa -->
+    <div class="flex sm:hidden bg-white shadow p-4 justify-between items-center">
+        <h1 class="text-xl font-bold">Menú</h1>
+        <button onclick="toggleMenu()" class="text-2xl">☰</button>
+    </div>
+
+    <!-- Menú lateral fijo en pantallas grandes -->
+    <aside class="hidden sm:block fixed w-1/6 h-full bg-white shadow">
+        <ul class="mt-6">
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Menu</a></li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Ordenes</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Facturación</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Reporte</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Menú lateral desplegable en móviles -->
+    <div id="mobile-menu" class="sm:hidden hidden bg-white shadow p-4">
+        <ul>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Menu</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Ordenes</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Facturación</a></li>
+            <li><a class="block text-lg font-medium" href="#">Reporte</a></li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="sm:ml-[16.7%] p-4">
+        <h1 class="text-3xl font-bold text-center mb-8">Control de Mesas</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Tarjetas de mesas -->
+            <!-- Puedes duplicar y ajustar según la cantidad de mesas -->
+            <div class="w-full p-4 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-xl font-semibold">Mesa 1</h2>
+                <button class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Agregar
+                    Orden</button>
+                <p class="mt-4 text-gray-500">Orden: No asignada</p>
+            </div>
+
+            <div class="w-full p-4 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-xl font-semibold">Mesa 2</h2>
+                <button class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Agregar
+                    Orden</button>
+                <p class="mt-4 text-gray-500">Orden: No asignada</p>
+            </div>
+
+            <div class="w-full p-4 bg-white rounded-lg shadow-md text-center">
+                <h2 class="text-xl font-semibold">Mesa 3</h2>
+                <button class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Agregar
+                    Orden</button>
+                <p class="mt-4 text-gray-500">Orden: No asignada</p>
+            </div>
+        </div>
+
+        <!-- Botón de Facturación -->
+        <button id="facturacion-btn"
+            class="fixed bottom-8 right-8 bg-green-500 text-white py-3 px-6 rounded-full shadow-lg hover:bg-green-600"
+            onclick="openFacturacionModal()">Facturación</button>
+    </main>
+
+
+    <!-- Modal de Facturación -->
+    <div id="facturacion-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
+        <div class="bg-white p-6 rounded-lg w-11/12 sm:w-96">
+            <h2 class="text-2xl font-semibold mb-4">Seleccionar Mesa para Facturar</h2>
+            <select id="mesa-select" class="w-full p-2 border border-gray-300 rounded-md mb-4">
+                <option value="1">Mesa 1</option>
+                <option value="2">Mesa 2</option>
+                <option value="3">Mesa 3</option>
+            </select>
+            <div id="order-summary" class="mb-4 text-sm text-gray-700">
+                <!-- Aquí irá el resumen de orden -->
+                No hay orden cargada.
+            </div>
+            <div class="flex justify-between">
+                <button onclick="closeFacturacionModal()"
+                    class="py-2 px-4 bg-gray-300 text-black rounded-md">Cerrar</button>
+                <button class="py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600">Finalizar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
