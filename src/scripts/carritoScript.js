@@ -12,7 +12,6 @@ function addToCart(name, price, nota="null") {
     //-------------------------------
     cartItems.push({ name, price });
     total += parseFloat(price);
-    console.log(`La nota es ` +nota)
     renderCart(nota);
 }
 
@@ -20,23 +19,20 @@ function renderCart(nota = "null") {
     const list = document.getElementById('cart-items');
     const totalDisplay = document.getElementById('cart-total');
     list.innerHTML = '';
+
+    /*if(nota!='null'){
+        const notaItem = document.createElement('li');
+        notaItem.textContent = ">>>"+nota;
+        notaItem.classList.add("text-red-700");
+        console.log(`La nota es ` +nota)
+        cartItems.push({ nota, });
+    }*/
+
     cartItems.forEach(item => {
+
         const li = document.createElement('li');
         li.innerHTML = `${item.name} Q ${item.price}`;
         list.appendChild(li);
-        //-------------------
-        /*if(nota!="null"){
-            const notaItem = document.createElement('li');
-            notaItem.textContent = ">>>"+nota;
-            notaItem.classList.add("text-red-700");
-            nota = "null";
-            cartItems.push({ nota, nota });
-            li.appendChild(notaItem);
-        }*/
-        //const nota = document.createElement('li');
-        //nota.textContent = "Sin algo ok";
-        //list.appendChild(nota);
-        //--------------------
         
     });
     console.log(cartItems)

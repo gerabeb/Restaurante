@@ -1,3 +1,9 @@
+    // Función para abrir el modal de facturación
+    function openFacturacionModal() {
+        const modal = document.getElementById("facturacion-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -8,12 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.toggle("hidden");
     }
 
-    // Función para abrir el modal de facturación
-    function openFacturacionModal() {
-        const modal = document.getElementById("facturacion-modal");
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-    }
 
     // Función para cerrar el modal de facturación
     function closeFacturacionModal() {

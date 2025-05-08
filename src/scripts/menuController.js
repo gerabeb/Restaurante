@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Modificar producto"+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
                 const userInput = prompt('Que quieres modificar?');
                 addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}` );
+                addToCart("-->>"+userInput, 0)
             })
         }
     }
