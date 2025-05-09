@@ -73,12 +73,12 @@ let combos=[
 
 let extras=[
     {
-        "name": "→Extra pepinillo",
+        "name": `<Label class="text-green-700">→Extra pepinillo</label>`,
         "price": 3,
         "img-src": "https://image.freepik.com/foto-gratis/rodajas-pepinillo-fresco-aislado-sobre-fondo-blanco_185193-47920.jpg"
     },
     {
-        "name": "→Extra carne",
+        "name": `<Label class="text-green-700">→Extra carne</label>`,
         "price": 7,
         "img-src": "https://tse1.mm.bing.net/th/id/OIP.2svN3nVwJXTpTF2vy4BE3gAAAA?rs=1&pid=ImgDetMain"
     }
@@ -114,8 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Modificar producto"+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
                 const userInput = prompt('Que quieres modificar?');
                 addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}` );
-                addToCart("-->>"+userInput, 0)
-            })
+
+                  console.log(typeof(userInput))
+
+                if(userInput){
+                    addToCart(`<Label class="text-red-700">--⤷`+userInput +`↵--</label>`, 0)
+                }
+            });
         }
     }
 

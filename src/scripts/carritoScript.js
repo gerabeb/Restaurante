@@ -10,6 +10,7 @@ function addToCart(name, price, nota="null") {
     //console.log(data[0])
     //console.log(obj[0].name)
     //-------------------------------
+    var lineItem = `${name} Q ${price}`
     cartItems.push({ name, price });
     total += parseFloat(price);
     renderCart(nota);
@@ -20,14 +21,6 @@ function renderCart(nota = "null") {
     const totalDisplay = document.getElementById('cart-total');
     list.innerHTML = '';
 
-    /*if(nota!='null'){
-        const notaItem = document.createElement('li');
-        notaItem.textContent = ">>>"+nota;
-        notaItem.classList.add("text-red-700");
-        console.log(`La nota es ` +nota)
-        cartItems.push({ nota, });
-    }*/
-
     cartItems.forEach(item => {
 
         const li = document.createElement('li');
@@ -35,8 +28,7 @@ function renderCart(nota = "null") {
         list.appendChild(li);
         
     });
-    console.log(cartItems)
-
+    //console.log(cartItems)
     totalDisplay.textContent = parseFloat( total).toFixed(2);
 }
 
@@ -45,6 +37,10 @@ function createOrder() {
     localStorage.setItem('order', JSON.stringify({ items: cartItems, total: total }));
     // Redirigimos a la página de la orden
     window.location.href = 'orden.html';
+}
+
+function removeFromCart(){
+    console.log("Elminar del carrito")
 }
 
 document.addEventListener('DOMContentLoaded', () => {
