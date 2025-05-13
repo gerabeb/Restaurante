@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menú de Hamburguesas</title>
     <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
+    <script src="/Restaurante/src/scripts/menuController.js"></script>
+    <script src="/Restaurante/src/scripts/carritoScript.js"></script>
 
 </head>
 
@@ -18,6 +20,11 @@
             <li>
                 -Item 1
                 <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
+            </li>
+            <li>
+                -Item 2
+                <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
+                 
             </li>
         </ul>
         <p class="text-lg font-semibold">Total: Q<span id="cart-total">0.00</span></p>
@@ -52,12 +59,20 @@
 
         <!-- Container -->
         <div class="flex flex-wrap gap-3" id="items-container">
-            <!--Muestra del container de un Producto -->
-            <div class="bg-white p-4 rounded shadow max-w-sm" id="item">
+            <!--Muestra de un Producto -->
+            <div class="bg-white p-4 rounded shadow max-w-sm itemSample">
                 <img src="https://tse3.mm.bing.net/th/id/OIP.RRrZKc6uX4sKK7ofbFabhQHaEf?w=272&h=180&c=7&r=0&o=5&pid=1.7"
                     alt="Hamburguesa Clásica" class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2" id="i-nombre">Hamburguesa Clásica</h2>
-                <p class="mb-2 text-gray-700" id="i-precio">$5.99</p>
+                <div class="flex items-center mb-2">
+                    <h2 class="text-xl font-semibold">Hamburguesa Clásica</h2>
+                    <span data-identificador="100"
+                        class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 ml-1">
+                        001
+                    </span>
+                </div>
+                <p class="mb-2 text-gray-700" data-descripcion="">Pan, queso, carne, un huevo estrellado, salsa barbacoa
+                </p>
+                <p class="mb-2 text-gray-700 font-semibold" data-precio="">$5.99</p>
                 <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
                     Agregar al carrito
                 </button>
@@ -67,8 +82,7 @@
             </div>
         </div>
 
-        <script src="/Restaurante/src/scripts/carritoScript.js"></script>
-        <script src="/Restaurante/src/scripts/menuController.js"></script>
+
 </body>
 
 </html>
