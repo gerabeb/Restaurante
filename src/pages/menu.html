@@ -6,13 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menú de Hamburguesas</title>
     <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
-
+    <script src="/Restaurante/src/scripts/ui_navbar.js"></script>
+    <script src="/Restaurante/src/scripts/carritoScript.js"></script>
+    <script src="/Restaurante/src/scripts/menuController.js"></script>
 </head>
 
 <body class="bg-gray-100">
 
-    <!-- Carrito -->
-    <div class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto">
+    <div class="flex sm:hidden bg-white shadow p-4 justify-between items-center">
+        <h1 class="text-xl font-bold">Menu de <label class="text-red-700">ShoBurgers</label> </h1>
+        <div class="flex space-x-4">
+            <button onclick="toggleSection('cart')" class="text-2xl">🛒</button>
+            <button onclick="toggleSection('menu')" class="text-2xl">☰</button>
+        </div>
+    </div>
+
+    <div id="menu-section" class="sm:hidden hidden bg-white shadow p-4">
+        <ul>
+            <li class="mb-2"><a class="block text-lg font-medium" href="menu.html">Menu</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Ordenes</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Facturacion</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Reporte</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="mesas.html">Mesas</a></li>
+        </ul>
+
+    </div>
+
+    <div id="cart-section" class="sm:hidden hidden bg-white shadow p-4">
         <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
         <ul id="cart-items" class="mb-4 space-y-2">
             <li>
@@ -24,20 +44,47 @@
         <button onclick="createOrder()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Crear
             Orden</button>
     </div>
-    <!-- Vertical navigation menu -->
-    <ul class="fixed w-1/6 h-full bg-white shadow ">
-        <li class="my-2 hover:bg-gray-100"><a class="text-3xl font-semibold ml-4" class="active" href="#home">Menu</a>
-        </li>
-        <li class="my-2 hover:bg-gray-100"><a class="text-3xl font-semibold ml-4" href="/orden.html">Ordenes</a></li>
-        <li class="my-2 hover:bg-gray-100"><a class="text-3xl font-semibold ml-4" href="#about ">Facturacion</a></li>
-        <li class="my-2 hover:bg-gray-100"><a class="text-3xl font-semibold ml-4" href="#news">Reporte de ventas</a>
-        </li>
-    </ul>
 
-    <div class=" ml-80 mr-80 p-4">
-        <h1 class="text-3xl font-bold mb-6 text-center">Menú de<label class="text-red-700"> Sho Burgers</label></h1>
-        <!-- Vertical navigation menu -->
-        <ul class="flex w-full h-14 bg-white shadow mb-5 items-center justify-center gap-16">
+
+
+
+    <!-- Carrito -->
+    <div class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto hidden sm:block z-20">
+        <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
+        <ul id="cart-items" class="mb-4 space-y-2">
+            <li>
+                -Item 1
+                <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
+            </li>
+        </ul>
+        <p class="text-lg font-semibold">Total: Q<span id="cart-total">0.00</span></p>
+        <button onclick="createOrder()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Crear
+            Orden</button>
+    </div>
+
+
+    <!---->
+    <aside class="hidden sm:block fixed w-1/6 h-full bg-white shadow left-0 top-0 z-20">
+        <ul class="mt-6">
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
+                    href="menu.html">Menu</a></li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Ordenes</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Facturacion</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Reporte</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
+                    href="mesas.html">Mesas</a></li>
+
+        </ul>
+    </aside>
+
+    <div class="p-4 sm:mx-[18vw] bg-pink-100">
+        <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center hidden sm:block">
+            Menú de <label class="text-red-700">Sho Burgers</label></h1>
+        <!-- menu cathegories -->
+        <ul class="flex flex-wrap w-full  bg-white shadow mb-5 items-center justify-center sm:gap-4">
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" class="active"
                     href="#home" id="menu-hamburguesas">Hamburguesas</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#"
@@ -51,12 +98,12 @@
         </ul>
 
         <!-- Container -->
-        <div class="flex flex-wrap gap-3" id="items-container">
-            <!--Muestra del container de un Producto -->
-            <div class="bg-white p-4 rounded shadow max-w-sm" id="item">
+        <div class="flex flex-wrap gap-3 justify-center" id="items-container">
+            <!--Muestra del container de un Producto   img>>>sm:w-96 h-auto sm:h-60" -->
+            <div class="bg-white p-4 rounded shadow  " id="item">
                 <img src="https://tse3.mm.bing.net/th/id/OIP.RRrZKc6uX4sKK7ofbFabhQHaEf?w=272&h=180&c=7&r=0&o=5&pid=1.7"
-                    alt="Hamburguesa Clásica" class="mb-4 rounded w-96 h-60">
-                <h2 class="text-xl font-semibold mb-2" id="i-nombre">Hamburguesa Clásica</h2>
+                    alt="Hamburguesa Clásica" class="mx-auto mb-4 rounded h-48 w-80 object-cover object-center">
+                <h2 class="text-lg sm:text-xl font-semibold mb-2" id="i-nombre">Hamburguesa Clásica</h2>
                 <p class="mb-2 text-gray-700" id="i-precio">$5.99</p>
                 <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
                     Agregar al carrito
@@ -66,9 +113,8 @@
                 </button>
             </div>
         </div>
+    </div>
 
-        <script src="/Restaurante/src/scripts/carritoScript.js"></script>
-        <script src="/Restaurante/src/scripts/menuController.js"></script>
 </body>
 
 </html>

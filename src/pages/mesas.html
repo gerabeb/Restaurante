@@ -23,12 +23,16 @@
     <!-- Menú lateral fijo en pantallas grandes -->
     <aside class="hidden sm:block fixed w-1/6 h-full bg-white shadow">
         <ul class="mt-6">
-            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Menu</a></li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
+                    href="menu.html">Menu</a></li>
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Ordenes</a>
             </li>
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Facturación</a>
             </li>
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Reporte</a>
+            </li>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
+                    href="mesas.html">Mesas</a>
             </li>
         </ul>
     </aside>
@@ -36,10 +40,11 @@
     <!-- Menú lateral desplegable en móviles -->
     <div id="mobile-menu" class="sm:hidden hidden bg-white shadow p-4">
         <ul>
-            <li class="mb-2"><a class="block text-lg font-medium" href="#">Menu</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="menu.html">Menu</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="#">Ordenes</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="#">Facturación</a></li>
             <li><a class="block text-lg font-medium" href="#">Reporte</a></li>
+            <li><a class="block text-lg font-medium" href="mesas.html">Mesas</a></li>
         </ul>
     </div>
 
@@ -70,6 +75,7 @@
                     Orden</button>
                 <p class="mt-4 text-gray-500">Orden: No asignada</p>
             </div>
+
         </div>
 
         <!-- Botón de Facturación -->
@@ -87,6 +93,7 @@
                 <option value="1">Mesa 1</option>
                 <option value="2">Mesa 2</option>
                 <option value="3">Mesa 3</option>
+
             </select>
             <div id="order-summary" class="mb-4 text-sm text-gray-700">
                 <!-- Aquí irá el resumen de orden -->

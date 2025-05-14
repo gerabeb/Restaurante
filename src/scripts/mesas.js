@@ -5,14 +5,12 @@
         modal.classList.add("flex");
     }
 
-document.addEventListener('DOMContentLoaded', () => {
-
-
-    // Script para abrir/cerrar el menú
-    function toggleMenu() {
+     // Script para abrir/cerrar el menú
+     function toggleMenu() {
         const menu = document.getElementById("mobile-menu");
         menu.classList.toggle("hidden");
     }
+    
 
 
     // Función para cerrar el modal de facturación
@@ -96,5 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     */
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+   
 
 })

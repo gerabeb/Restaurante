@@ -1,5 +1,5 @@
 
-let hamburgers=[
+let hamburgers = [
     {
         "name": "La hamburguesa clasica",
         "price": 12.99,
@@ -22,7 +22,7 @@ let hamburgers=[
     }
 ];
 
-let bebidas=[
+let bebidas = [
     {
         "name": "Coca",
         "price": 8,
@@ -40,7 +40,7 @@ let bebidas=[
     }
 ];
 
-let entradas=[
+let entradas = [
     {
         "name": "Papas fritas",
         "price": 7,
@@ -53,7 +53,7 @@ let entradas=[
     }
 ];
 
-let combos=[
+let combos = [
     {
         "name": "Papas y coca",
         "price": 15,
@@ -71,7 +71,7 @@ let combos=[
     }
 ];
 
-let extras=[
+let extras = [
     {
         "name": `<Label class="text-green-700">→Extra pepinillo</label>`,
         "price": 3,
@@ -88,15 +88,15 @@ localStorage.setItem("hamburguersData", JSON.stringify(hamburgers))
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    function ClearContainer(){
-        for(let i = container.childElementCount; i > 0; i--){
+    function ClearContainer() {
+        for (let i = container.childElementCount; i > 0; i--) {
             //console.log("for is running "+ container.children[0].innerHTML);
             container.children[0].remove();
         }
     }
-    
-    function ShowCategoryProducts(category){
-        for(var k= 0; k<category.length; k++){
+
+    function ShowCategoryProducts(category) {
+        for (var k = 0; k < category.length; k++) {
             let newItem = itemElement.cloneNode(true);
             newItem.querySelector("img").src = category[k]["img-src"];
             let newItemPrice = category[k].price.toFixed(2);
@@ -106,19 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //obtener botones
             const buttons = newItem.getElementsByTagName('button');
-            buttons[0].addEventListener('click', function(){
+            buttons[0].addEventListener('click', function () {
                 //console.log("Agregar al carrito "+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
-                addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice );
+                addToCart("-" + newItem.querySelector("h2").innerHTML, newItemPrice);
             });
-            buttons[1].addEventListener('click', function(){
-                console.log("Modificar producto"+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
+            buttons[1].addEventListener('click', function () {
+                console.log("Modificar producto" + newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
                 const userInput = prompt('Que quieres modificar?');
-                addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}` );
+                addToCart("-" + newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}`);
 
-                  console.log(typeof(userInput))
+                console.log(typeof (userInput))
 
-                if(userInput){
-                    addToCart(`<Label class="text-red-700">--⤷`+userInput +`↵--</label>`, 0)
+                if (userInput) {
+                    addToCart(`<Label class="text-red-700">--⤷` + userInput + `↵--</label>`, 0)
                 }
             });
         }
@@ -128,37 +128,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let itemElement = document.getElementById("item");
 
     //console.log(container.childElementCount +" elements ")
-   
+
     ClearContainer();
     ShowCategoryProducts(hamburgers);
 
 
 
     //Mostras menus
-    document.getElementById('menu-hamburguesas').addEventListener('click', function(){
+    document.getElementById('menu-hamburguesas').addEventListener('click', function () {
         console.log("Elemento <a> si detecta click")
         ClearContainer();
         ShowCategoryProducts(hamburgers);
     });
 
-    document.getElementById('menu-bebidas').addEventListener('click', function(){
+    document.getElementById('menu-bebidas').addEventListener('click', function () {
         console.log("Elemento <a> si detecta click")
         ClearContainer();
         ShowCategoryProducts(bebidas);
     });
 
-    document.getElementById('menu-entradas').addEventListener('click', function(){
+    document.getElementById('menu-entradas').addEventListener('click', function () {
         console.log("Elemento <a> si detecta click")
 
         ClearContainer();
         ShowCategoryProducts(entradas);
     });
-    document.getElementById('menu-combos').addEventListener('click', function(){
+    document.getElementById('menu-combos').addEventListener('click', function () {
         console.log("Elemento <a> si detecta click")
         ClearContainer();
         ShowCategoryProducts(combos);
     });
-    document.getElementById('menu-extras').addEventListener('click', function(){
+    document.getElementById('menu-extras').addEventListener('click', function () {
         console.log("Elemento <a> si detecta click")
         ClearContainer();
         ShowCategoryProducts(extras);
