@@ -1,7 +1,7 @@
 const cartItems = [];
 let total = 0;
 
-function addToCart(name, price, nota="null") {
+function addToCart(name, price, nota = "null") {
     //---------------------Acceder a el array de elementos en memoria solo esta de prueba
     //const data = localStorage.getItem("hamburguersData");
     //console.log(typeof (JSON.parse(data)))
@@ -19,17 +19,21 @@ function addToCart(name, price, nota="null") {
 function renderCart(nota = "null") {
     const list = document.getElementById('cart-items');
     const totalDisplay = document.getElementById('cart-total');
+    //console.log(list.innerHTML)
+
     list.innerHTML = '';
+    //console.log(list.innerHTML)
 
     cartItems.forEach(item => {
 
         const li = document.createElement('li');
         li.innerHTML = `${item.name} Q ${item.price}`;
         list.appendChild(li);
-        
+
     });
+    //console.log(list.innerText)
     //console.log(cartItems)
-    totalDisplay.textContent = parseFloat( total).toFixed(2);
+    totalDisplay.textContent = parseFloat(total).toFixed(2);
 }
 
 function createOrder() {
@@ -39,8 +43,10 @@ function createOrder() {
     window.location.href = 'orden.html';
 }
 
-function removeFromCart(){
-    console.log("Elminar del carrito")
+function removeFromCart() {
+    //console.log("Elminar del carrito")
+    
+    
 }
 
 document.addEventListener('DOMContentLoaded', () => {
