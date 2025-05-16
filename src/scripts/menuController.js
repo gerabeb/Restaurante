@@ -94,8 +94,6 @@ let entradas=[
     }
 ];
  
- 
- 
 let extras=[
     {
         "id": 500,

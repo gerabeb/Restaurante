@@ -17,23 +17,24 @@ function addToCart(name, price, nota = "null") {
 }
 
 function renderCart(nota = "null") {
-    const list = document.getElementById('cart-items');
-    const totalDisplay = document.getElementById('cart-total');
-    //console.log(list.innerHTML)
+    const list = document.getElementById('cart-list-sm');
+    const list2 = document.getElementById('cart-list-lg');
+    const totalDisplay = document.getElementById('cart-total-sm');
+    const totalDisplay2 = document.getElementById('cart-total-lg');
+
 
     list.innerHTML = '';
-    //console.log(list.innerHTML)
+    list2.innerHTML = '';
 
     cartItems.forEach(item => {
-
         const li = document.createElement('li');
         li.innerHTML = `${item.name} Q ${item.price}`;
         list.appendChild(li);
-
     });
-    //console.log(list.innerText)
-    //console.log(cartItems)
+    list2.appendChild(list.cloneNode(true));//duplicar lista y agregar al otro carrito
     totalDisplay.textContent = parseFloat(total).toFixed(2);
+    totalDisplay2.textContent = parseFloat(total).toFixed(2);
+
 }
 
 function createOrder() {
