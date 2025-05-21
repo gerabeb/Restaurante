@@ -9,6 +9,8 @@
     <script src="/Restaurante/src/scripts/menuController.js"></script>
     <script src="/Restaurante/src/scripts/ui_navbar.js"></script>
     <script src="/Restaurante/src/scripts/carritoScript.js"></script>
+    <script src="/Restaurante/src/scripts/productos.js"></script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -56,7 +58,7 @@
         <ul id="cart-list-sm" class="mb-4 space-y-2">
             <li>
                 -Item 1
-                <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
+                <button onclick="removeFromCart()" class="text-red-700 removeBtn">❌❎ⓍX</button>
             </li>
         </ul>
         <p class="text-lg font-semibold">Total: Q<span id="cart-total-sm">0.00</span></p>
@@ -70,12 +72,19 @@
         <ul id="cart-list-lg" class="mb-4 space-y-2">
             <li>
                 -Item 1
-                <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
+                <button onclick="removeFromCart(this)" class="text-red-700">❌</button>
+                <ul class="list-inside ml-8 observation">
+                    <li>
+                        Sin cebolla
+                    </li> 
+                </ul>
             </li>
             <li>
                 -Item 2
-                <button onclick="removeFromCart()" class="text-red-700">❌❎ⓍX</button>
-                 
+                <button onclick="removeFromCart(this)" class="text-red-700">❌</button>
+                 <ul class="list-inside ml-8 text-red-700">
+                    <li>Sin queso</li> 
+                </ul>
             </li>
         </ul>
         <p class="text-lg font-semibold">Total: Q<span id="cart-total-lg">0.00</span></p>
@@ -85,7 +94,7 @@
 
 
     <!-- menu cathegories -->
-    <div class="p-4 sm:mx-[18vw] bg-pink-100">
+    <div class="p-4 sm:mx-[18vw]">
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center hidden sm:block">
             Menú de <label class="text-red-700">Sho Burgers</label></h1>
         <ul class="flex flex-wrap w-full  bg-white shadow mb-5 items-center justify-center sm:gap-4">

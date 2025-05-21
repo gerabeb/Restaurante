@@ -669,6 +669,14 @@ video {
   margin-top: 1.5rem;
 }
 
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -683,6 +691,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.list-item {
+  display: list-item;
 }
 
 .hidden {
@@ -715,6 +727,26 @@ video {
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.list-inside {
+  list-style-position: inside;
+}
+
+.list-outside {
+  list-style-position: outside;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
+.list-none {
+  list-style-type: none;
+}
+
+.list-image-none {
+  list-style-image: none;
 }
 
 .grid-cols-1 {
