@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
     function ShowCategoryProducts(category){
 
-        products = getAllFromCategory(category);
+        let products = getAllFromCategory(category);
         for(var k= 0; k<products.length; k++){
 
             //console.log(products[k])
@@ -33,47 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const buttons = newItem.getElementsByTagName('button');
 
             buttons[0].onclick = function(e) {
-                console.log(e.target.parentNode.querySelector('[data-identificador]').dataset.id);
+                //console.log(e.target.parentNode.querySelector('[data-identificador]').dataset.id);
                 addToCart(getProductByID(e.target.parentNode.querySelector('[data-identificador]').dataset.id))
             };
             buttons[1].onclick = function(e) {
                 //Clonar objeto y modificar propiedades
-                console.log(e.target.parentNode.querySelector('[data-identificador]').dataset.id);
                 let product = {...getProductByID(e.target.parentNode.querySelector('[data-identificador]').dataset.id)};
                 let userInput = prompt('Que quieres modificar?');
                 if(userInput){
                     product.note = userInput;
-                    userInput=""; //PENDIENTE POR ACA
+                    userInput="";
                 }
                 addToCart(product);
             };
-
-            /*buttons[0].addEventListener('click', function(){
-                //console.log("Agregar al carrito "+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
-                //addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice );
-                addToCart(products[k], newItemPrice)
-            });*/
-           /* buttons[1].addEventListener('click', function(){
-                console.log("Modificar producto"+newItem.querySelector("h2").innerHTML + " price:" + newItemPrice);
-                const userInput = prompt('Que quieres modificar?');
-                addToCart("-"+newItem.querySelector("h2").innerHTML, newItemPrice, `${userInput}` );
- 
-                  console.log(typeof(userInput))
- 
-                if(userInput){
-                    addToCart(`<Label class="text-red-700">--⤷`+userInput +`↵--</label>`, 0)
-                }
-            });*/
         }
     }
- 
- 
-    //console.log(container.childElementCount +" elements ")
-   
+    
     ClearContainer();
     ShowCategoryProducts(hamburguesas);
- 
- 
  
     //Mostras menus
     document.getElementById('menu-hamburguesas').addEventListener('click', function(){

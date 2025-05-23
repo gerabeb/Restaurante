@@ -3,16 +3,7 @@ let total = 0;
 
 
 function addToCart(product) {
-    //---------------------Acceder a el array de elementos en memoria solo esta de prueba
-    //const data = localStorage.getItem("hamburguersData");
-    //console.log(typeof (JSON.parse(data)))
-    //const obj = JSON.parse(data)
-    //console.log(obj)
-    //console.log(data[0])
-    //console.log(obj[0].name)
-    //-------------------------------
     cartItems.push(product);
-    console.log(product)
     renderCart();
 }
 
@@ -43,9 +34,9 @@ function renderCart() {
             li.appendChild(removeButton);
             list.appendChild(li);
 
-            //Mostrar onta especial
+            //Mostrar nota especial
             if(item.note != ""){
-                console.log("Este necesita un submenu "+item.name);
+                //console.log("Este necesita un submenu "+item.name);
                 let ul = document.createElement('ul');
                 ul.className = "list-inside ml-8 text-red-700";
 
@@ -65,10 +56,14 @@ function renderCart() {
 }
 
 function createOrder() {
-    // Guardamos la orden en localStorage
-    localStorage.setItem('order', JSON.stringify({ items: cartItems, total: total }));
+    if(cartItems.length >0){
+        RegisterOrder(cartItems);
+        console.log(cartItems)
+    }else{
+        console.log("Agregue productos antes de crear orden")
+    }
     // Redirigimos a la página de la orden
-    window.location.href = 'orden.html';
+   // window.location.href = 'ordenesPage.html';
 }
 
 function removeFromCart(index) {

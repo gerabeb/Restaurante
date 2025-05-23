@@ -146,11 +146,10 @@ function getProductByID(id){
     const result =  allProducts.find(item => item.id === Number(id))
     //console.log(result)
     if(result){
-        console.log (result.name)
+      return result;
     }else{
         console.log("ID no encontrado");
     }
-    return result;
 }
 
 function getProductByIndex(index){

@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menú de Hamburguesas</title>
+    <title>Control de ordenes</title>
     <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
-    <script src="/Restaurante/src/scripts/menuController.js"></script>
     <script src="/Restaurante/src/scripts/ui_navbar.js"></script>
-    <script src="/Restaurante/src/scripts/carritoScript.js"></script>
-    <script src="/Restaurante/src/scripts/productos.js"></script>
     <script src="/Restaurante/src/scripts/ordenesDatabase.js"></script>
+    <script src="/Restaurante/src/scripts/ordenesDisplay.js"></script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -96,41 +95,41 @@
     <!-- menu cathegories -->
     <div class="p-4 sm:mx-[18vw]">
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center hidden sm:block">
-            Menú de <label class="text-red-700">Sho Burgers</label></h1>
+            Ordenes de <label class="text-red-700">Sho Burgers</label></h1>
         <ul class="flex flex-wrap w-full  bg-white shadow mb-5 items-center justify-center sm:gap-4">
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" class="active"
-                    href="#home" id="menu-hamburguesas">Hamburguesas</a></li>
+                    href="#home" id="menu-hamburguesas">Pendientes</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#"
-                    id="menu-bebidas">Bebidas</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#about"
-                    id="menu-entradas">Entradas</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#news"
-                    id="menu-combos">Combo</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#news"
-                    id="menu-extras">Extra ing</a></li>
+                    id="menu-bebidas">Completadas</a></li>
         </ul>
 
-        <!--Products Container -->
-        <div class="flex flex-wrap gap-3 justify-center" id="items-container">
-            <!--Muestra de un Producto -->
-            <div class="bg-white p-4 rounded shadow max-w-sm itemSample">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.RRrZKc6uX4sKK7ofbFabhQHaEf?w=272&h=180&c=7&r=0&o=5&pid=1.7"
-                    alt="Hamburguesa Clásica" class="mb-4 rounded w-96 h-60">
+        <!--Orders Container -->
+        <div class="flex flex-wrap gap-3 justify-center" id="orders-container">
+            <!--Muestra de una orden -->
+            <div class="bg-white p-4 rounded shadow max-w-sm orderSample w-96">
                 <div class="flex items-center mb-2">
-                    <h2 class="text-xl font-semibold">Hamburguesa Clásica</h2>
-                    <span data-identificador="100"
+                    <h2 class="text-xl font-semibold">Muestra #123456</h2>
+                    <span data-status="Nueva"
                         class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 ml-1">
-                        001
+                        En preparacion
                     </span>
                 </div>
-                <p class="mb-2 text-gray-700" data-descripcion="">Pan, queso, carne, un huevo estrellado, salsa barbacoa
+                <p class="mb-2 text-gray-700 font-semibold" data-cliente="">Mesa 3</p>
+                <p class="mb-2 text-gray-700" data-descripcion="">
+                    <ul class="mb-4 space-y-2 orderList">
+                        <li>Hamburguesa Vegana</li>
+                        <li>Hamburguesa Doble</li>
+                        <li>Hamburguesa BBQ</li>
+                            <ul class="list-inside ml-8 text-red-700">
+                                <li>Sin BBQ</li>
+                            </ul>
+                        <li>La hamburguesa clasica</li>
+                            <ul class="list-inside ml-8 text-red-700">
+                                <li>Sin huevo</li>
+                            </ul></ul>
                 </p>
-                <p class="mb-2 text-gray-700 font-semibold" data-precio="">$5.99</p>
                 <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                    Agregar al carrito
-                </button>
-                <button class="bg-orange-400 hover:bg-orange-600 text-white px-4 py-2 rounded">
-                    Cambiar y agregar
+                    Marcar como completa
                 </button>
             </div>
         </div>
