@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control de ordenes</title>
+    <title>Facturacion</title>
     <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
     <script src="/Restaurante/src/scripts/ui_navbar.js"></script>
     <script src="/Restaurante/src/scripts/ordenesDatabase.js"></script>
-    <script src="/Restaurante/src/scripts/ordenesDisplay.js"></script>
+    <script src="/Restaurante/src/scripts/facturacion.js"></script>
 
 </head>
 
@@ -30,7 +30,7 @@
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
                     href="ordenesPage.html">Ordenes</a>
             </li>
-            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="factuacionPage.html">Facturacion</a>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Facturacion</a>
             </li>
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Reporte</a>
             </li>
@@ -48,7 +48,7 @@
         <ul>
             <li class="mb-2"><a class="block text-lg font-medium" href="menu.html">Menu</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="ordenesPage.html">Ordenes</a></li>
-            <li class="mb-2"><a class="block text-lg font-medium" href="factuacionPage.html">Facturacion</a></li>
+            <li class="mb-2"><a class="block text-lg font-medium" href="#">Facturacion</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="#">Reporte</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="mesas.html">Mesas</a></li>
             <li class="mb-2"><a class="block text-lg font-medium" href="#">Historial de Ordenes</a></li>
@@ -60,12 +60,12 @@
     <!-- menu cathegories -->
     <div class="p-4 sm:mx-[18vw] w-4/5 mx-auto">
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center hidden sm:block">
-            Ordenes de <label class="text-red-700">Sho Burgers</label></h1>
+            Facturacion de <label class="text-red-700">Sho Burgers</label></h1>
         <ul class="flex flex-wrap w-full  bg-white shadow mb-5 items-center justify-center sm:gap-4">
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4"
-                     id="mostrar-pendientes">Pendientes</a></li>
+                     id="mostrar-completadas">Completadas</a></li>
             <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4"
-                    id="mostrar-completadas">Completadas</a></li>
+                    id="mostrar-pagadas">Pagadas</a></li>
         </ul>
 
         <!--Orders Container -->
@@ -93,8 +93,10 @@
                                 <li>Sin huevo</li>
                             </ul></ul>
                 </p>
+                <p class="text-lg font-semibold" data-total="">
+                    Total: Q0.00</p>
                 <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                    Marcar como completa
+                    Pagar
                 </button>
             </div>
         </div>

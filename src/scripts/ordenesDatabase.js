@@ -23,6 +23,7 @@ orderObj.status = "Entregado";
 function RegisterOrder(cartItems) {
     const newOrder = structuredClone(orderObj); //Clonar original para que los cambios no afecten a la misma orden y cada una sea independiente
     newOrder.products = cartItems;
+    newOrder.customer.name = prompt("Ingrese nombre del cliente");
     newOrder.orderDate = new Date();
     newOrder.status = "En preparacion";
 
