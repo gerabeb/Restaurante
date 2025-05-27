@@ -3,6 +3,8 @@ orders = [];
 document.addEventListener('DOMContentLoaded', () => {
     let container = document.getElementById('orders-container');
     let itemElement = container.querySelector(".orderSample");
+    const pendientesBtn = document.getElementById("mostrar-pendientes");
+    const completadasBtn = document.getElementById('mostrar-completadas')
 
     function ClearContainer() {
         for (let i = container.childElementCount; i > 0; i--) {
@@ -10,24 +12,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function DisplayOrders(category) {
-        orders = GetSavedOrders();
-    }
-
     function MarkComplete(index) {
         console.log("Marcar como completa a " + index)
         orders[index].newOrder.status = "Completada";
-        console.log(orders)
+        //console.log(orders)
         UpdateOrders(orders);   //GUARDAR CAMBIOS EN DB
+        RefreshItems("En preparacion");
     }
 
-    function RefreshItems() {
+    function RefreshItems(stat = "") {
         ClearContainer();
+
+        orders = GetSavedOrders();
+        //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
+            const oStatus = newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
+
             newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
-            //console.log(orders[i].newOrder.id)
-            newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
+            newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
+            if(oStatus === "En preparacion"){
+                newItem.querySelector('[data-status]').classList.add("bg-yellow-300");
+            }else{
+                newItem.querySelector('[data-status]').classList.add("bg-green-200");
+            }
+
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
             const list = newItem.querySelector(".orderList");
             list.innerHTML = "";
@@ -50,20 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            container.appendChild(newItem);
+            //Filters orders only if status matches
+            if(oStatus === stat){
+                container.appendChild(newItem);
+            }
 
             //obtener botones
             const buttons = newItem.getElementsByTagName('button');
-
-            console.log(i)
             const idx = i;
             buttons[0].addEventListener('click', function (e) {
                 MarkComplete(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
-                RefreshItems();
             })
         }
     }
 
+    completadasBtn.addEventListener('click', function(){
+        RefreshItems("Completada");
+    });
+    pendientesBtn.addEventListener('click', function(){
+        RefreshItems("En preparacion");
+    });
+
+    //Por defecto mostrar
     orders = GetSavedOrders();
-    RefreshItems();
+    RefreshItems("En preparacion")
 });

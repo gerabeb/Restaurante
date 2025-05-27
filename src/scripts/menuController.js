@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCart(getProductByID(e.target.parentNode.querySelector('[data-identificador]').dataset.id))
             };
             buttons[1].onclick = function(e) {
+                let product = {...getProductByID(e.target.parentNode.querySelector('[data-identificador]').dataset.id)};
+                openAddNotesModal(product)
+
+                /*
                 //Clonar objeto y modificar propiedades
                 let product = {...getProductByID(e.target.parentNode.querySelector('[data-identificador]').dataset.id)};
                 let userInput = prompt('Que quieres modificar?');
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     product.note = userInput;
                     userInput="";
                 }
-                addToCart(product);
+                addToCart(product);*/
             };
         }
     }

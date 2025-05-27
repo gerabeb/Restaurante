@@ -11,6 +11,7 @@
     <script src="/Restaurante/src/scripts/carritoScript.js"></script>
     <script src="/Restaurante/src/scripts/productos.js"></script>
     <script src="/Restaurante/src/scripts/ordenesDatabase.js"></script>
+    <script src="/Restaurante/src/scripts/agregarNota.js"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -29,7 +30,8 @@
         <ul class="mt-6">
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
                     href="menu.html">Menu</a></li>
-            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Ordenes</a>
+            <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold"
+                    href="/Restaurante/src/pages/ordenesPage.html">Ordenes</a>
             </li>
             <li class="my-2 hover:bg-gray-100"><a class="block px-4 py-2 text-xl font-semibold" href="#">Facturacion</a>
             </li>
@@ -67,7 +69,8 @@
     </div>
 
     <!-- Carrito Pantallas Grandes-->
-    <div id="cart-lg-section"  class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto hidden sm:block z-20">
+    <div id="cart-lg-section"
+        class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto hidden sm:block z-20">
         <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
         <ul id="cart-list-lg" class="mb-4 space-y-2">
             <li>
@@ -76,14 +79,14 @@
                 <ul class="list-inside ml-8 observation">
                     <li>
                         Sin cebolla
-                    </li> 
+                    </li>
                 </ul>
             </li>
             <li>
                 -Item Example 2
                 <button class="text-red-700">❌</button>
-                 <ul class="list-inside ml-8 text-red-700">
-                    <li>Sin queso</li> 
+                <ul class="list-inside ml-8 text-red-700">
+                    <li>Sin queso</li>
                 </ul>
             </li>
         </ul>
@@ -134,8 +137,63 @@
                 </button>
             </div>
         </div>
-        
+
     </div>
+
+    <!-- Modal para checkboxes con estilo mejorado en Tailwind CSS -->
+    <div id="checkbox-modal"
+        class="hidden fixed inset-0 w-screen h-screen bg-black bg-opacity-60 z-[2000] flex items-center justify-center">
+
+        <div class="bg-white p-8 rounded-2xl shadow-2xl min-w-[320px] max-w-[90vw] relative animate-fade-in">
+            <!-- Botón de cerrar -->
+            <button id="close-modal" onclick="CloseAddNotesModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition text-3xl font-bold focus:outline-none">
+                &times;
+            </button>
+
+            <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center">Selecciona las opciones</h3>
+
+            <form id="checkbox-form" class="space-y-4">
+                <!-- Ejemplo de checkboxes estilizados -->
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" class="accent-blue-600 w-5 h-5 rounded focus:ring-2 focus:ring-blue-400" />
+                    <span class="text-gray-700">Opción 1</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" class="accent-blue-600 w-5 h-5 rounded focus:ring-2 focus:ring-blue-400" />
+                    <span class="text-gray-700">Opción 2</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" class="accent-blue-600 w-5 h-5 rounded focus:ring-2 focus:ring-blue-400" />
+                    <span class="text-gray-700">Opción 3</span>
+                </label>
+            </form>
+
+            <button id="confirm-checkboxes"
+                class="mt-8 w-full py-3 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold rounded-xl shadow hover:from-blue-700 hover:to-blue-500 transition">
+                Confirmar
+            </button>
+        </div>
+    </div>
+
+    <!-- Animación de entrada (agrega esto en tu CSS global si usas Tailwind sin plugins) -->
+    <style>
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.3s cubic-bezier(.4, 0, .2, 1);
+        }
+    </style>
 
 </body>
 
