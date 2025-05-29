@@ -82,5 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Por defecto mostrar
     orders = GetSavedOrders();
+
+    console.log(orders[0])
     RefreshItems("En preparacion")
 });

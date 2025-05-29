@@ -3,12 +3,15 @@ let orderObj = {
     orderDate: new Date("01-01-2001"),
     status: "Nueva",
     employee: {
+        id: 1,
         name: "Angel Beb",
-        genero: "Hueco"
+        email: "Hueco"
     },
     customer: {
-        name: "Mesa 1",
-        NIT: 190166409
+        id: 1,
+        name: "Cliente de Muestra",
+        NIT: 190166409,
+        email: "",
     },
     products: {
 
@@ -22,6 +25,7 @@ orderObj.status = "Entregado";
 
 function RegisterOrder(cartItems) {
     const newOrder = structuredClone(orderObj); //Clonar original para que los cambios no afecten a la misma orden y cada una sea independiente
+    newOrder.id = GenerateOrderId();
     newOrder.products = cartItems;
     newOrder.customer.name = prompt("Ingrese nombre del cliente");
     newOrder.orderDate = new Date();
@@ -33,8 +37,8 @@ function RegisterOrder(cartItems) {
     localStorage.setItem('orders', JSON.stringify(orders));
 }
 
-function UpdateOrders(updatedOrders){
-    orders= updatedOrders;
+function UpdateOrders(updatedOrders) {
+    orders = updatedOrders;
     localStorage.setItem('orders', JSON.stringify(orders));
 }
 
@@ -58,5 +62,27 @@ function GetSavedOrders() {
     }
 }
 
+function GenerateOrderId() {
+    /*//ID based on Date
+    var d = new Date();
+    const id = d.getFullYear().toString().substring(2)
+        + "" + (d.getMonth() + 1).toString().padStart(2, '0')
+        + "" + d.getDate().toString().padStart(2, '0')
+        + "" + d.getHours().toString().padStart(2, '0')
+        + "" + d.getMinutes().toString().padStart(2, '0')
+        + "" + d.getSeconds().toString().padStart(2, '0')
+        //+ "" + d.getMilliseconds().toString().padStart(3, '0')
+    console.log(id)
+    return id;*/
+    
+    //Incremental ID
+    let id = parseInt(localStorage.getItem('contadorId'), 10);
+    id > 0 ? id += 1 : id = 1;
+    localStorage.setItem('contadorId', id);
+    return id;
+}
+
+
 //PrintOrders();
 //localStorage.removeItem('orders')
+//localStorage.removeItem('contadorId')
