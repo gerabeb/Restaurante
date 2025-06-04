@@ -1,5 +1,17 @@
+orders = [];
+
+function PayOrderAt(index){
+    console.log("pagando")
+    orders = GetSavedOrders();
+    StartPayment(orders[index]);
+}
 
 document.addEventListener('DOMContentLoaded', function () {
+//Cliente
+    const nitInput = document.getElementById('nit');
+    const nameInput = document.getElementById('nombre_factura');
+    const emailInput = document.getElementById('email_cliente');
+//Orden
     const efectivoRadio = document.getElementById('efectivoRadio');
     const efectivoSection = document.getElementById('efectivoSection');
     const pagoForm = document.getElementById('pagoForm');
@@ -10,68 +22,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let itemElement = document.querySelector(".orderSample");
     let porcentajePropina = 10;
 
+    let subtotal =0;
+    let tip =0;
+    let total =0;
 
-    const order = {
-        "newOrder": {
-            "id": "20250529",
-            "orderDate": "2025-05-28T22:22:37.074Z",
-            "status": "Completada",
-            "employee": {
-                "name": "Angel Beb",
-                "genero": "Hueco"
-            },
-            "customer": {
-                "name": null,
-                "NIT": 190166409
-            },
-            "products": [
-                {
-                    "id": 101,
-                    "name": "Hamburguesa BBQ",
-                    "price": 45,
-                    "description": "Pan, queso, carne, un huevo estrellado, salsa barbacoa",
-                    "img-src": "https://bing.com/th?id=OSK.a107ed30f1bccd9f7327d294b244e4d8",
-                    "note": "",
-                    "categoria": "hamburguesas"
-                },
-                {
-                    "id": 101,
-                    "name": "Hamburguesa BBQ",
-                    "price": 45,
-                    "description": "Pan, queso, carne, un huevo estrellado, salsa barbacoa",
-                    "img-src": "https://bing.com/th?id=OSK.a107ed30f1bccd9f7327d294b244e4d8",
-                    "note": "",
-                    "categoria": "hamburguesas"
-                }
-            ]
-        }
-    }
+    orders = GetSavedOrders();
+    console.log(localStorage.getItem('currentOrder'))
+    let order = orders[localStorage.getItem('currentOrder')]
+    StartPayment()
 
-    const metodoBtns = document.querySelectorAll('.metodo-btn');
-    metodoBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            metodoBtns.forEach(b => {
-                b.classList.remove('bg-blue-600', 'text-white', 'selected', 'ring-2', 'ring-blue-500');
-            });
-            btn.classList.add('bg-blue-600', 'text-white', 'selected', 'ring-2', 'ring-blue-500');
-
-            // Sincronizar con el radio correspondiente
-            const metodo = btn.getAttribute('data-metodo');
-            document.getElementById(metodo + 'Radio').checked = true;
-            document.getElementById(metodo + 'Radio').dispatchEvent(new Event('change'));
-        });
-    });
-
-    PagarOrden(order)
-    actualizarResumenPropina();
-
-    function PagarOrden(order) {
+    function StartPayment() {
         let newItem = itemElement;
         // Número de orden y estado
         newItem.querySelector("h2").innerHTML = "Orden #" + order.newOrder.id;
         newItem.querySelector('[data-status]').innerHTML = order.newOrder.status;
-
-        // Lista de productos
+        nameInput.value = order.newOrder.customer.name;
+        //Resumen de orden
         const list = newItem.querySelector(".orderList");
         list.innerHTML = "";
         order.newOrder.products.forEach(item => {
@@ -94,16 +60,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Subtotal
-        const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
-        // Propina 10%
-        const tip = subtotal * 0.10;
-        // Total
-        const total = subtotal + tip;
-        // Mostrar valores
-        newItem.querySelector('#order-subtotal').textContent = `Q${subtotal.toFixed(2)}`;
-        newItem.querySelector('#order-tip').textContent = `Q${tip.toFixed(2)}`;
-        newItem.querySelector('#order-total').textContent = `Q${total.toFixed(2)}`;
+        subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
+        actualizarResumenPropina()
     }
+
+    function FinishPayment(){
+        order.newOrder.customer.name = nameInput.value;
+        order.newOrder.customer.NIT = nitInput.value;
+        order.newOrder.customer.email = emailInput.value;
+
+        order.newOrder.status = "Pagada";
+        order.newOrder.tip = tip;
+        UpdateOrders(orders); //update db
+        window.location.href = 'factuacionPage.html';
+    }
+
 
     const propinaBtns = document.querySelectorAll('.propina-btn');
     propinaBtns.forEach(btn => {
@@ -124,9 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para actualizar el resumen de la orden con la propina seleccionada
     function actualizarResumenPropina() {
-        const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
-        const tip = subtotal * (porcentajePropina / 100);
-        const total = subtotal + tip;
+        tip = subtotal * (porcentajePropina / 100);
+        total = subtotal + tip;
 
         itemElement.querySelector('#order-subtotal').textContent = `Q${subtotal.toFixed(2)}`;
         itemElement.querySelector('#order-tip').textContent = `Q${tip.toFixed(2)}`;
@@ -154,9 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function calcularCambioYAdvertencia() {
         // Calcula el subtotal y la propina según el resumen actual
-        const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
-        const tip = subtotal * (porcentajePropina / 100);
-        const total = subtotal + tip;
+        tip = subtotal * (porcentajePropina / 100);
+        total = subtotal + tip;
 
         // Lee el valor ingresado por el usuario
         const efectivoVal = parseFloat(efectivoRecibido.value) || 0;
@@ -186,9 +155,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     pagoForm.addEventListener('submit', function (e) {
         if (efectivoRadio.checked) {
-            const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
-            const tip = subtotal * (porcentajePropina / 100);
-            const total = subtotal + tip;
+            tip = subtotal * (porcentajePropina / 100);
+            total = subtotal + tip;
             const efectivoVal = parseFloat(efectivoRecibido.value) || 0;
             if (efectivoVal < total) {
                 e.preventDefault();
@@ -198,5 +166,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-});
+    const metodoBtns = document.querySelectorAll('.metodo-btn');
+    metodoBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            metodoBtns.forEach(b => {
+                b.classList.remove('bg-blue-600', 'text-white', 'selected', 'ring-2', 'ring-blue-500');
+            });
+            btn.classList.add('bg-blue-600', 'text-white', 'selected', 'ring-2', 'ring-blue-500');
 
+            // Sincronizar con el radio correspondiente
+            const metodo = btn.getAttribute('data-metodo');
+            document.getElementById(metodo + 'Radio').checked = true;
+            document.getElementById(metodo + 'Radio').dispatchEvent(new Event('change'));
+        });
+    });
+
+    submitBtn.addEventListener('click', function(){
+        FinishPayment();
+    })
+
+    nitInput.addEventListener('input', function(){
+        if(nitInput.value.length === 9){
+            console.log("Este es mi nit "+ nitInput.value)
+            order.newOrder.customer.NIT = nitInput.value;
+            nitInput.disabled = true;
+        }
+    });
+
+    nameInput.addEventListener('input', function(){
+            order.newOrder.customer.name = nameInput.value;
+    });
+
+    emailInput.addEventListener('input', function(){
+            order.newOrder.customer.email = emailInput.value;
+    });
+
+});

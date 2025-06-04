@@ -12,14 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function MarkPaid(index) {
-        console.log("Marcar como completa a " + index)
-        orders[index].newOrder.status = "Pagada";
-        //console.log(orders)
-        UpdateOrders(orders);   //GUARDAR CAMBIOS EN DB
-        RefreshItems("Completada");
-    }
-
     function RefreshItems(stat = "") {
         ClearContainer();
 
@@ -71,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const buttons = newItem.getElementsByTagName('button');
             const idx = i;
             buttons[0].addEventListener('click', function (e) {
-                MarkPaid(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
+                console.log(idx + " Se pagaraaa")
+                localStorage.setItem('currentOrder', idx);
+                window.location.href = 'pagos.html';
+                //MarkPaid(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
             })
         }
     }
