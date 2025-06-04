@@ -43,23 +43,6 @@ function UpdateOrders(updatedOrders) {
     localStorage.setItem('orders', JSON.stringify(orders));
 }
 
-/*
-//UpdateOrderWithID(1, "Testeada", 10)
-
-function UpdateOrderWithID(id, status, tip){
-    orders = GetSavedOrders();
-
-    for(var i = 0; i<orders.length; i++){
-        if(orders[i].newOrder.id === parseInt(id) ){
-            orders[i].newOrder.tip = tip;
-            orders[i].newOrder.status = status;
-        }
-    }
-    UpdateOrders(orders);
-    orders = GetSavedOrders();
-    console.log("Order updated")
-}*/
-
 function PrintOrders() {
     orders = GetSavedOrders();
     if (orders) {

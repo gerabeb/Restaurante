@@ -27,15 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
-            const oStatus = newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
 
             newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
             newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
-            if(oStatus === "En preparacion"){
-                newItem.querySelector('[data-status]').classList.add("bg-yellow-300");
-            }else{
-                newItem.querySelector('[data-status]').classList.add("bg-green-200");
-            }
 
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
             const list = newItem.querySelector(".orderList");
@@ -59,24 +53,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            //Filters orders only if status matches
-            if(oStatus === stat){
-                container.appendChild(newItem);
-            }
-
             //obtener botones
             const buttons = newItem.getElementsByTagName('button');
             const idx = i;
             buttons[0].addEventListener('click', function (e) {
                 MarkComplete(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
-            })
+            });
+
+            //Make changes based on status
+            const oStatus = newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
+            if (oStatus === "En preparacion") {
+                newItem.querySelector('[data-status]').classList.add("bg-yellow-300");
+            } else {
+                newItem.querySelector('[data-status]').classList.add("bg-green-200");
+                buttons[0].classList.add('hidden')
+            }
+            //Filters orders only if status matches
+            if (oStatus === stat) {
+                container.appendChild(newItem);
+            }
+
         }
     }
 
-    completadasBtn.addEventListener('click', function(){
+    completadasBtn.addEventListener('click', function () {
         RefreshItems("Completada");
     });
-    pendientesBtn.addEventListener('click', function(){
+    pendientesBtn.addEventListener('click', function () {
         RefreshItems("En preparacion");
     });
 

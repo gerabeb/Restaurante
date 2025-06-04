@@ -1,12 +1,5 @@
-orders = [];
-
-function PayOrderAt(index){
-    console.log("pagando")
-    orders = GetSavedOrders();
-    StartPayment(orders[index]);
-}
-
 document.addEventListener('DOMContentLoaded', function () {
+    orders = [];
 //Cliente
     const nitInput = document.getElementById('nit');
     const nameInput = document.getElementById('nombre_factura');
