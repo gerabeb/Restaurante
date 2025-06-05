@@ -12,14 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function MarkPaid(index) {
-        console.log("Marcar como completa a " + index)
-        orders[index].newOrder.status = "Pagada";
-        //console.log(orders)
-        UpdateOrders(orders);   //GUARDAR CAMBIOS EN DB
-        RefreshItems("Completada");
-    }
-
     function RefreshItems(stat = "") {
         ClearContainer();
 
@@ -27,19 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
-            const oStatus = newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
-
-            newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
-            newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
-            if(oStatus === "Pagada"){
-                newItem.querySelector('[data-status]').classList.add("bg-blue-100");
-            }else{
-                newItem.querySelector('[data-status]').classList.add("bg-green-200");
-            }
 
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
-            newItem.querySelector('[data-total]').innerHTML = `Total Q${orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0)}`;
+            newItem.querySelector('[data-total]').innerHTML = `Total Q${ (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))+orders[i].newOrder.tip}`;
             //console.log(orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))
+            newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
+            newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
 
             const list = newItem.querySelector(".orderList");
             list.innerHTML = "";
@@ -62,24 +47,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            //Filters orders only if status matches
-            if(oStatus === stat){
-                container.appendChild(newItem);
+            //Mostrar propina
+            if (orders[i].newOrder.tip > 0) {
+                let liTip = document.createElement('li');
+                liTip.innerText = "-Propina de Q" + orders[i].newOrder.tip;
+                list.appendChild(liTip);
             }
 
             //obtener botones
             const buttons = newItem.getElementsByTagName('button');
             const idx = i;
             buttons[0].addEventListener('click', function (e) {
-                MarkPaid(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
-            })
+                console.log(idx + " Se pagaraaa")
+                localStorage.setItem('currentOrder', idx);
+                window.location.href = 'pagos.html';
+                //MarkPaid(idx); //HACER QUE ESTE BOTON LLAME AL INDICE CORRECTO, ACTUALMENTE MANDA 5, REFRESCAR AFTER CHANGING
+            });
+
+            //Make changes based on status
+            const oStatus = newItem.querySelector('[data-status]').innerHTML = orders[i].newOrder.status;
+            if (oStatus === "Completada") {
+                newItem.querySelector('[data-status]').classList.add("bg-green-200");
+            } else {
+                newItem.querySelector('[data-status]').classList.add("bg-blue-100");
+                buttons[0].classList.add('hidden')
+            }
+            //Filters orders only if status matches
+            if (oStatus === stat) {
+                container.appendChild(newItem);
+            }
         }
     }
 
-    completadasBtn.addEventListener('click', function(){
+    completadasBtn.addEventListener('click', function () {
         RefreshItems("Completada");
     });
-    pagadasBtn.addEventListener('click', function(){
+    pagadasBtn.addEventListener('click', function () {
         RefreshItems("Pagada");
     });
 

@@ -2,6 +2,7 @@ let orderObj = {
     id: 1,
     orderDate: new Date("01-01-2001"),
     status: "Nueva",
+    tip : 0,
     employee: {
         id: 1,
         name: "Angel Beb",
