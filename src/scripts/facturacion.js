@@ -16,13 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ClearContainer();
 
         orders = GetSavedOrders();
-        console.log(orders)
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
 
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
-            newItem.querySelector('[data-total]').innerHTML = `Total Q${orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0)}`;
+            newItem.querySelector('[data-total]').innerHTML = `Total Q${ (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))+orders[i].newOrder.tip}`;
             //console.log(orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))
             newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
             newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
@@ -50,11 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Mostrar propina
             if (orders[i].newOrder.tip > 0) {
-                console.log("Hay propina ");
-                //ul.className = "list-inside ml-8 text-red-700";
-
                 let liTip = document.createElement('li');
-                liTip.innerText = "Propina de Q" + orders[i].newOrder.tip;
+                liTip.innerText = "-Propina de Q" + orders[i].newOrder.tip;
                 list.appendChild(liTip);
             }
 
