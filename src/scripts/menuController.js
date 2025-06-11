@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newItem.querySelector("h2").innerHTML = products[k].name;
             newItem.querySelector('[data-identificador]').innerHTML = products[k].id;
             newItem.querySelector('[data-identificador]').dataset.id = products[k].id;
+            newItem.querySelector('[data-descripcion]').innerHTML = products[k].description;
             //console.log( newItem.querySelector('[data-identificador]').dataset.id);
             let newItemPrice = products[k].price.toFixed(2);
             newItem.querySelector("[data-precio]").innerHTML = "Q " + newItemPrice;

@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let total =0;
 
     orders = GetSavedOrders();
-    console.log(localStorage.getItem('currentOrder'))
     let order = orders[localStorage.getItem('currentOrder')]
     StartPayment()
 
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         order.newOrder.status = "Pagada";
         order.newOrder.tip = tip;
         UpdateOrders(orders); //update db
-        window.location.href = 'factuacionPage.html';
+        //window.location.href = 'factuacionPage.html';
     }
 
 
@@ -176,13 +175,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     submitBtn.addEventListener('click', function(){
         FinishPayment();
+        generarPDFFactura(order)
     })
 
     nitInput.addEventListener('input', function(){
-        if(nitInput.value.length === 9){
-            console.log("Este es mi nit "+ nitInput.value)
+        if(nitInput.value.length > 7){
             order.newOrder.customer.NIT = nitInput.value;
-            nitInput.disabled = true;
+            //nitInput.disabled = true;
         }
     });
 

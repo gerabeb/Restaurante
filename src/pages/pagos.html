@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Pagos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/Restaurante/src/scripts/facturapdf.js"></script>
     <script src="/Restaurante/src/scripts/pagos.js"></script>
     <script src="/Restaurante/src/scripts/ordenesDatabase.js"></script>
     <link rel="stylesheet" href="/Restaurante/src/tailwindStyle.css">
@@ -33,6 +35,11 @@
                                 alt="Tarjeta de crédito" class="w-10 h-10">
                         </button>
                     </div>
+                    <!-- Puedes ocultar los radios si quieres mantener compatibilidad-->
+                    <input type="radio" id="efectivoRadio" name="metodo_pago" value="efectivo" class="hidden" checked>
+                    <input type="radio" id="transferenciaRadio" name="metodo_pago" value="transferencia" class="hidden">
+                    <input type="radio" id="tarjetaRadio" name="metodo_pago" value="tarjeta" class="hidden"> 
+
                 </div>
 
                 <!-- Campos de información -->
@@ -85,7 +92,7 @@
                 </div>
 
                 <!-- Botón de enviar -->
-                <button type="submit" id="submitBtn"
+                <button type="button" id="submitBtn"
                     class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition">
                     Registrar Pago
                 </button>                

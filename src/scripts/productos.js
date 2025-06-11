@@ -121,7 +121,8 @@ let entradas=[
 let extras=[
     {
     "id": 500,
-    "name": "<Label class=\"text-green-700\">→Extra pepinillo</label>",
+    //"name": "<Label class=\"text-green-700\">→Extra pepinillo</label>",
+    "name":"Extra Pepinilos",
     "price": 3,
     "description": "2 rodajas de pepinillo",
     "img-src": "https://image.freepik.com/foto-gratis/rodajas-pepinillo-fresco-aislado-sobre-fondo-blanco_185193-47920.jpg",
@@ -130,7 +131,8 @@ let extras=[
   },
   {
     "id": 501,
-    "name": "<Label class=\"text-green-700\">→Extra carne</label>",
+    //"name": "<Label class=\"text-green-700\">→Extra carne</label>",
+    "name": "Extra carne",
     "price": 7,
     "description": "Torta de carne de 1/4 de libra",
     "img-src": "https://tse1.mm.bing.net/th/id/OIP.2svN3nVwJXTpTF2vy4BE3gAAAA?rs=1&pid=ImgDetMain",
