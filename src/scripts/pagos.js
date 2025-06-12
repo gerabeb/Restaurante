@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     orders = [];
-//Cliente
+    //Cliente
     const nitInput = document.getElementById('nit');
     const nameInput = document.getElementById('nombre_factura');
     const emailInput = document.getElementById('email_cliente');
-//Orden
+    //Pago
     const efectivoRadio = document.getElementById('efectivoRadio');
     const efectivoSection = document.getElementById('efectivoSection');
     const pagoForm = document.getElementById('pagoForm');
@@ -14,10 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitBtn = document.getElementById('submitBtn');
     let itemElement = document.querySelector(".orderSample");
     let porcentajePropina = 10;
+    //Factura panel
+    const confirmationPanel = document.getElementById('confirmationPanel');
+    const sendPdfBtn = document.getElementById('sendPdfBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const goHomeBtn = document.getElementById('goHomeBtn');
 
-    let subtotal =0;
-    let tip =0;
-    let total =0;
+
+    let subtotal = 0;
+    let tip = 0;
+    let total = 0;
 
     orders = GetSavedOrders();
     let order = orders[localStorage.getItem('currentOrder')]
@@ -56,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarResumenPropina()
     }
 
-    function FinishPayment(){
+    function FinishPayment() {
         order.newOrder.customer.name = nameInput.value;
         order.newOrder.customer.NIT = nitInput.value;
         order.newOrder.customer.email = emailInput.value;
@@ -64,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
         order.newOrder.status = "Pagada";
         order.newOrder.tip = tip;
         UpdateOrders(orders); //update db
-        //window.location.href = 'factuacionPage.html';
     }
 
 
@@ -173,24 +178,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    submitBtn.addEventListener('click', function(){
+    submitBtn.addEventListener('click', function () {
         FinishPayment();
-        generarPDFFactura(order)
+        confirmationPanel.classList.remove('hidden');
     })
 
-    nitInput.addEventListener('input', function(){
-        if(nitInput.value.length > 7){
+    sendPdfBtn.addEventListener('click', function () {
+        alert('Se ha enviado PDF por email. ;)');
+    });
+
+    downloadPdfBtn.addEventListener('click', function () {
+        // Aquí llamas tu función para descargar el PDF
+        generarPDFFactura(order)
+        alert('Se descargo el PDF.');
+    });
+
+    goHomeBtn.addEventListener('click', function () {
+        // Redirige a la página de inicio
+        window.location.href = 'factuacionPage.html';
+    });
+
+    nitInput.addEventListener('input', function () {
+        if (nitInput.value.length > 7) {
             order.newOrder.customer.NIT = nitInput.value;
             //nitInput.disabled = true;
         }
     });
 
-    nameInput.addEventListener('input', function(){
-            order.newOrder.customer.name = nameInput.value;
+    nameInput.addEventListener('input', function () {
+        order.newOrder.customer.name = nameInput.value;
     });
 
-    emailInput.addEventListener('input', function(){
-            order.newOrder.customer.email = emailInput.value;
+    emailInput.addEventListener('input', function () {
+        order.newOrder.customer.email = emailInput.value;
     });
 
 });

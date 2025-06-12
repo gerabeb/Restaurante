@@ -38,7 +38,7 @@
                     <!-- Puedes ocultar los radios si quieres mantener compatibilidad-->
                     <input type="radio" id="efectivoRadio" name="metodo_pago" value="efectivo" class="hidden" checked>
                     <input type="radio" id="transferenciaRadio" name="metodo_pago" value="transferencia" class="hidden">
-                    <input type="radio" id="tarjetaRadio" name="metodo_pago" value="tarjeta" class="hidden"> 
+                    <input type="radio" id="tarjetaRadio" name="metodo_pago" value="tarjeta" class="hidden">
 
                 </div>
 
@@ -95,8 +95,39 @@
                 <button type="button" id="submitBtn"
                     class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition">
                     Registrar Pago
-                </button>                
+                </button>
             </form>
+        </div>
+
+        <!--Pago exitoso, mandar factura-->
+        <div id="confirmationPanel" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full flex flex-col items-center gap-6">
+                <h2 class="text-2xl font-bold text-center text-green-600">¡Pago registrado exitosamente!</h2>
+                <div class="flex flex-col gap-4 w-full">
+                    <button id="sendPdfBtn"
+                        class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M16 12H8m0 0l4-4m-4 4l4 4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Enviar PDF por Email
+                    </button>
+                    <button id="downloadPdfBtn"
+                        class="w-full bg-green-600 text-white py-2 rounded font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Descargar PDF
+                    </button>
+                    <button id="goHomeBtn"
+                        class="w-full bg-gray-300 text-gray-800 py-2 rounded font-semibold hover:bg-gray-400 transition flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Ir al inicio
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="bg-white p-8 rounded shadow-md w-full md:w-1/2 max-w-md orderSample">
