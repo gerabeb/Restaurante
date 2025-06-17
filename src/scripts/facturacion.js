@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = container.childElementCount; i > 0; i--) {
             container.children[0].remove();
         }
+        completadasBtn.classList.remove("underline");
+        pagadasBtn.classList.remove("underline");
     }
 
     function RefreshItems(stat = "") {
@@ -21,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let newItem = itemElement.cloneNode(true);
 
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
-            newItem.querySelector('[data-total]').innerHTML = `Total Q${ (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))+orders[i].newOrder.tip}`;
+            const total = (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))+ Number(orders[i].newOrder.tip);
+            newItem.querySelector('[data-total]').innerHTML = `Total Q${total}`;
             //console.log(orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))
             newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;
             newItem.querySelector('[data-status]').classList.remove("bg-blue-100");
@@ -81,12 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     completadasBtn.addEventListener('click', function () {
         RefreshItems("Completada");
+        completadasBtn.classList.add("underline")
     });
     pagadasBtn.addEventListener('click', function () {
         RefreshItems("Pagada");
+        pagadasBtn.classList.add("underline")
     });
 
     //Por defecto mostrar
     orders = GetSavedOrders();
     RefreshItems("Completada")
+    completadasBtn.classList.add("underline")
 });

@@ -32,10 +32,7 @@
     <div id="cart-sm-section" class="sm:hidden hidden bg-white shadow p-4">
         <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
         <ul id="cart-list-sm" class="mb-4 space-y-2">
-            <li>
-                -Item Example 1
-                <button class="text-red-700 removeBtn">❌❎ⓍX</button>
-            </li>
+                <!-- Aca se agregan los li dinamicamente-->
         </ul>
         <p class="text-lg font-semibold">Total: Q<span id="cart-total-sm">0.00</span></p>
         <button onclick="createOrder()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Crear
@@ -47,22 +44,7 @@
         class="fixed top-0 right-0 bg-white shadow-lg w-1/6 h-full p-4 overflow-y-auto hidden sm:block z-20">
         <h2 class="text-xl font-bold mb-4">🛒 Carrito</h2>
         <ul id="cart-list-lg" class="mb-4 space-y-2">
-            <li>
-                -Item Example 1
-                <button class="text-red-700">❌</button>
-                <ul class="list-inside ml-8 observation">
-                    <li>
-                        Sin cebolla
-                    </li>
-                </ul>
-            </li>
-            <li>
-                -Item Example 2
-                <button class="text-red-700">❌</button>
-                <ul class="list-inside ml-8 text-red-700">
-                    <li>Sin queso</li>
-                </ul>
-            </li>
+                <!-- Aca se agregan los li dinamicamente-->
         </ul>
         <p class="text-lg font-semibold">Total: Q<span id="cart-total-lg">0.00</span></p>
         <button onclick="createOrder()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Crear
@@ -75,15 +57,15 @@
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center hidden sm:block">
             Menú de <label class="text-red-700">Sho Burgers</label></h1>
         <ul class="flex flex-wrap w-full  bg-white shadow mb-5 items-center justify-center sm:gap-4">
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" class="active"
+            <li class="text-gray-500 my-2 hover:underline inline decoration-blue-500"><a class="text-3xl font-semibold ml-4" class="active"
                     href="#home" id="menu-hamburguesas">Hamburguesas</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#"
+            <li class="text-gray-500 my-2 hover:underline inline decoration-blue-500"><a class="text-3xl font-semibold ml-4" href="#"
                     id="menu-bebidas">Bebidas</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#about"
+            <li class="text-gray-500 my-2 hover:underline inline decoration-blue-500"><a class="text-3xl font-semibold ml-4" href="#about"
                     id="menu-entradas">Entradas</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#news"
+            <li class="text-gray-500 my-2 hover:underline inline decoration-blue-500"><a class="text-3xl font-semibold ml-4" href="#news"
                     id="menu-combos">Combo</a></li>
-            <li class="text-gray-500 my-2 hover:underline inline"><a class="text-3xl font-semibold ml-4" href="#news"
+            <li class="text-gray-500 my-2 hover:underline inline decoration-blue-500"><a class="text-3xl font-semibold ml-4" href="#news"
                     id="menu-extras">Extra ing</a></li>
         </ul>
 

@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = container.childElementCount; i > 0; i--) {
             container.children[0].remove();
         }
+        completadasBtn.classList.remove("underline");
+        pendientesBtn.classList.remove("underline");
     }
 
     function MarkComplete(index) {
@@ -24,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ClearContainer();
 
         orders = GetSavedOrders();
+
+        if(orders.length ==0){
+            let message = document.createElement('p');
+            message.innerHTML = "No hay elementos que mostrar :)"
+            container.appendChild(message);
+        }
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
@@ -78,14 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     completadasBtn.addEventListener('click', function () {
         RefreshItems("Completada");
+        completadasBtn.classList.add("underline")
     });
     pendientesBtn.addEventListener('click', function () {
         RefreshItems("En preparacion");
+        pendientesBtn.classList.add("underline")
     });
 
     //Por defecto mostrar
     orders = GetSavedOrders();
-
-    console.log(orders[0])
     RefreshItems("En preparacion")
+    pendientesBtn.classList.add("underline")
 });

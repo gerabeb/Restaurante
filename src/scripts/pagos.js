@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     let subtotal = 0;
-    let tip = 0;
+    let tip = Number(0);
     let total = 0;
 
     orders = GetSavedOrders();
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         order.newOrder.customer.email = emailInput.value;
 
         order.newOrder.status = "Pagada";
-        order.newOrder.tip = tip;
+        order.newOrder.tip = (tip).toFixed(2);
         UpdateOrders(orders); //update db
     }
 

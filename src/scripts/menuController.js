@@ -1,14 +1,22 @@
-
-//localStorage.setItem("hamburguersData", JSON.stringify(hamburguesas))
-
 document.addEventListener('DOMContentLoaded', () => {
     let container = document.getElementById('items-container');
     let itemElement = container.querySelector(".itemSample");
+
+    const hamburguesasBtn = document.getElementById('menu-hamburguesas');
+    const bebidasBtn = document.getElementById('menu-bebidas');
+    const entradasBtn = document.getElementById('menu-entradas');
+    const combosBtn = document.getElementById('menu-combos');
+    const extrasBtn =document.getElementById('menu-extras');
 
     function ClearContainer() {
         for (let i = container.childElementCount; i > 0; i--) {
             container.children[0].remove();
         }
+        hamburguesasBtn.classList.remove("underline");
+        bebidasBtn.classList.remove("underline");
+        entradasBtn.classList.remove("underline");
+        combosBtn.classList.remove("underline");
+        extrasBtn.classList.remove("underline");
     }
 
     function ShowCategoryProducts(category) {
@@ -56,28 +64,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ClearContainer();
     ShowCategoryProducts(hamburguesas);
+    hamburguesasBtn.classList.add("underline")
 
     //Mostras menus
-    document.getElementById('menu-hamburguesas').addEventListener('click', function () {
+    hamburguesasBtn.addEventListener('click', function () {
         ClearContainer();
         ShowCategoryProducts(hamburguesas);
+        hamburguesasBtn.classList.add("underline")
     });
-
-    document.getElementById('menu-bebidas').addEventListener('click', function () {
+    bebidasBtn.addEventListener('click', function () {
         ClearContainer();
         ShowCategoryProducts(bebidas);
+        bebidasBtn.classList.add("underline")
     });
 
-    document.getElementById('menu-entradas').addEventListener('click', function () {
+    entradasBtn.addEventListener('click', function () {
         ClearContainer();
         ShowCategoryProducts(entradas);
+        entradasBtn.classList.add("underline")
     });
-    document.getElementById('menu-combos').addEventListener('click', function () {
+    combosBtn.addEventListener('click', function () {
         ClearContainer();
         ShowCategoryProducts(combos);
+        combosBtn.classList.add("underline")
     });
-    document.getElementById('menu-extras').addEventListener('click', function () {
+    extrasBtn.addEventListener('click', function () {
         ClearContainer();
         ShowCategoryProducts(extras);
+        extrasBtn.classList.add("underline")
     });
 });
