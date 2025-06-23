@@ -1219,6 +1219,10 @@ video {
   font-weight: 600;
 }
 
+.font-normal {
+  font-weight: 400;
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -1279,24 +1283,17 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
 .underline {
   text-decoration-line: underline;
 }
 
-.decoration-pink-500 {
-  text-decoration-color: #ec4899;
-}
-
-.decoration-red-500 {
-  text-decoration-color: #ef4444;
-}
-
 .decoration-blue-500 {
   text-decoration-color: #3b82f6;
-}
-
-.decoration-red-950 {
-  text-decoration-color: #450a0a;
 }
 
 .accent-blue-600 {

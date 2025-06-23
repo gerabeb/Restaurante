@@ -53,7 +53,8 @@ function generarPDFFactura(order) {
   }
   pdf.line(10, y, 70, y);
   y += 5;
-  pdf.text(`Propina Q${order.newOrder.tip.toFixed(2)}`, 50, y);
+  const tip = Number(order.newOrder.tip).toFixed(2);
+  pdf.text(`Propina Q${tip}`, 50, y);
   y += 5
   const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
   pdf.text(`IVA Q${(subtotal*.12).toFixed(2)}`, 50, y);
@@ -62,7 +63,7 @@ function generarPDFFactura(order) {
   y += 5;
 
   pdf.setFontSize(10);
-  pdf.text(`Total: Q${(subtotal+order.newOrder.tip).toFixed(2)}`, 60, y, { align: 'center' });
+  pdf.text(`Total: Q${(subtotal+tip*1).toFixed(2)}`, 60, y, { align: 'center' });
   y += 8;
 
   pdf.setFontSize(8);
