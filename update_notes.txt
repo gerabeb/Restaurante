@@ -1,0 +1,4 @@
+06/24/2025  Julio
+-Removed facturacionPrueba.html
+-Added relative links on all html pages
+-Added this update notes file
