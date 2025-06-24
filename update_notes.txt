@@ -2,3 +2,5 @@
 -Removed facturacionPrueba.html
 -Added relative links on all html pages
 -Added this update notes file
+
+-Message added "No hay elementos que mostrar :)" when there are no orders

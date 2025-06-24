@@ -18,12 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ClearContainer();
 
         orders = GetSavedOrders();
+
+        //Checkear si hay ordenes con la misma categoria
+        const ordersFiltered = orders.filter(order => order.newOrder?.status === stat);
+        if (ordersFiltered.length == 0) {
+            let message = document.createElement('p');
+            message.innerHTML = "No hay elementos que mostrar :)"
+            container.appendChild(message);
+        }
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
 
             newItem.querySelector('[data-cliente]').innerHTML = orders[i].newOrder.customer.name;
-            const total = (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))+ Number(orders[i].newOrder.tip);
+            const total = (orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0)) + Number(orders[i].newOrder.tip);
             newItem.querySelector('[data-total]').innerHTML = `Total Q${total}`;
             //console.log(orders[i].newOrder.products.reduce((sum, item) => sum + item.price, 0))
             newItem.querySelector("h2").innerHTML = "Orden #" + orders[i].newOrder.id;

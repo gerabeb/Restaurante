@@ -27,12 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         orders = GetSavedOrders();
 
-        if(orders.length ==0){
+        //Checkear si hay ordenes con la misma categoria
+        const ordersFiltered = orders.filter(order => order.newOrder?.status === stat);
+        if (ordersFiltered.length == 0) {
             let message = document.createElement('p');
             message.innerHTML = "No hay elementos que mostrar :)"
             container.appendChild(message);
         }
         //const ordersCopy = stat ? orders.filter(itm => itm.newOrder.status === stat): orders;
+
         for (var i = 0; i < orders.length; i++) {
             let newItem = itemElement.cloneNode(true);
 
