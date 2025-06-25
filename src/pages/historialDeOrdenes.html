@@ -7,6 +7,8 @@
     <title>Historial de ordenes</title>
     <link rel="stylesheet" href="../tailwindStyle.css">
     <script src="../scripts/ui_navbar.js"></script>
+    <script src="../scripts/ordenesDatabase.js"></script>
+    <script src="../scripts/ordersHistory.js"></script>
 
 </head>
 
@@ -42,19 +44,20 @@
                 <div class="w-24 text-right">Total</div>
             </div>
             <!-- Línea de orden como botón -->
-            <button type="button"
-                class="flex items-center w-full px-4 py-2 border-b hover:bg-blue-50 focus:bg-blue-100 transition-colors outline-none"
-                onclick="alert('Haz clic en la orden #10999')">
-                <div class="w-32 font-semibold text-gray-700 text-left">#10999</div>
-                <div class="w-32 text-gray-600 text-left">01-01-2025</div>
-                <div class="flex-1 text-gray-800 text-left">Cliente de Muestra</div>
-                <div class="w-24 text-center">
-                    <span class="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
-                        Nueva
-                    </span>
-                </div>
-                <div class="w-24 text-right text-gray-700 font-semibold">Q150.00</div>
-            </button>
+            <div id="grid-container">
+                <button id="linea-sample" type="button" class="flex items-center w-full px-4 py-2 border-b hover:bg-blue-50 focus:bg-blue-100 transition-colors outline-none">
+                    <div class="w-32 font-semibold text-gray-700 text-left" data-id="">#10999</div>
+                    <div class="w-32 text-gray-600 text-left" data-date="">01-01-2025</div>
+                    <div class="flex-1 text-gray-800 text-left" data-name="">Cliente de Muestra</div>
+                    <div class="w-24 text-center">
+                        <span data-status="" class="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700" >
+                            Nueva
+                        </span>
+                    </div>
+                    <div data-total="" class="w-24 text-right text-gray-700 font-semibold">Q150.00</div>
+                </button>
+            </div>
+
         </div>
 
         <div class=" mx-auto mt-8">
