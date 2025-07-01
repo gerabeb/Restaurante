@@ -189,8 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     downloadPdfBtn.addEventListener('click', function () {
         // Aquí llamas tu función para descargar el PDF
-        generarPDFFactura(order)
-        alert('Se descargo el PDF.');
+        generarPDFFactura(order.newOrder)
     });
 
     goHomeBtn.addEventListener('click', function () {

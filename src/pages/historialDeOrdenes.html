@@ -9,6 +9,8 @@
     <script src="../scripts/ui_navbar.js"></script>
     <script src="../scripts/ordenesDatabase.js"></script>
     <script src="../scripts/ordersHistory.js"></script>
+    <script src="../scripts/facturapdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 </head>
 
@@ -45,145 +47,44 @@
             </div>
             <!-- Línea de orden como botón -->
             <div id="grid-container">
-                <button id="linea-sample" type="button" class="flex items-center w-full px-4 py-2 border-b hover:bg-blue-50 focus:bg-blue-100 transition-colors outline-none">
+                <button id="linea-sample" type="button"
+                    class="flex items-center w-full px-4 py-2 border-b hover:bg-blue-50 focus:bg-blue-100 transition-colors outline-none">
                     <div class="w-32 font-semibold text-gray-700 text-left" data-id="">#10999</div>
                     <div class="w-32 text-gray-600 text-left" data-date="">01-01-2025</div>
                     <div class="flex-1 text-gray-800 text-left" data-name="">Cliente de Muestra</div>
                     <div class="w-24 text-center">
-                        <span data-status="" class="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700" >
+                        <span data-status=""
+                            class="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                             Nueva
                         </span>
                     </div>
                     <div data-total="" class="w-24 text-right text-gray-700 font-semibold">Q150.00</div>
                 </button>
             </div>
-
-        </div>
-
-        <div class=" mx-auto mt-8">
-            <div class="bg-white rounded-lg shadow p-6 flex flex-col space-y-6">
-                <!-- Encabezado de la orden -->
-                <div class="flex flex-col md:flex-row md:justify-between md:items-center border-b pb-4">
-                    <div>
-                        <div class="text-lg font-semibold">Orden #10999</div>
-                        <div class="text-sm text-gray-600 font-semibold">Fecha: <span
-                                class="font-normal">01-01-2025</span></div>
-                    </div>
-                </div>
-                <div class="hidden">
-
-                </div>
-                <!-- Cliente -->
-                <div class="flex flex-col md:flex-row md:justify-between md:items-center border-b pb-4">
-                    <div>
-                        <p class="text-gray-600 font-semibold">Cliente: <span class="font-normal">Arnold
-                                Swacheniggar</span></p>
-                    </div>
-                    <div class="mt-2 md:mt-0">
-                        <p class="text-gray-600 font-semibold">NIT: <span class="font-normal">106549-8</span></p>
-                    </div>
-                    <div class=" text-gray-600 font-semibold">Estado: <span class="font-normal">Nueva</span>
-                    </div>
-                    <div class="mt-2 md:mt-0">
-                        <p class="text-gray-600 font-semibold">Atendió: <span class="font-normal">Angel Beb</span></p>
-                    </div>
-                </div>
-                <!-- Productos -->
-                <div class="mt-8">
-                    <div class="bg-white rounded-lg shadow p-6 flex flex-col ">
-
-                        <!-- Productos -->
-                        <!-- Encabezados (solo en md+) -->
-                        <div class="hidden md:flex font-semibold  border-b pb-1">
-                            <div class="flex-1">Producto</div>
-                            <div class="w-24 text-center">Cantidad</div>
-                            <div class="w-28 text-center">Precio unitario</div>
-                            <div class="w-28 text-right">Subtotal</div>
-                        </div>
-                        <div class="flex flex-col space-y-2">
-                            <!-- Producto 1: Hamburguesa Vegana -->
-                            <div class="flex flex-col md:flex-row md:items-center bg-gray-50 rounded p-2">
-                                <div class="flex-1">
-                                    <div class="font-medium md:font-normal">Hamburguesa Vegana</div>
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-700">
-                                    <span class="font-semibold">Cantidad:</span>&nbsp;1
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-700">
-                                    <span class="font-semibold">Precio:</span>&nbsp;Q30.00
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-800">
-                                    <span class="font-semibold">Subtotal:</span>&nbsp;Q30.00
-                                </div>
-                                <div class="hidden md:flex w-24 justify-center items-center">
-                                    1
-                                </div>
-                                <div class="hidden md:flex w-28 justify-center items-center  font-semibold">
-                                    Q30.00
-                                </div>
-                                <div class="hidden md:flex w-28 justify-end items-center font-semibold">
-                                    Q30.00
-                                </div>
-                            </div>
-                            <!-- Producto 2: Hamburguesa Doble (sin nota) -->
-                            <div class="flex flex-col md:flex-row md:items-center bg-gray-50 rounded p-2">
-                                <div class="flex-1">
-                                    <div class="font-medium md:font-normal">Hamburguesa Doble</div>
-                                </div>
-                                <div class="flex md:hidden text-sm ">
-                                    <span class="font-semibold">Cantidad:</span>&nbsp;1
-                                </div>
-                                <div class="flex md:hidden text-sm  font-semibold">
-                                    <span class="font-semibold">Precio:</span>&nbsp;Q60.00
-                                </div>
-                                <div class="flex md:hidden text-sm  font-semibold">
-                                    <span class="font-semibold">Subtotal:</span>&nbsp;Q60.00
-                                </div>
-                                <div class="hidden md:flex w-24 justify-center items-center ">
-                                    1
-                                </div>
-                                <div class="hidden md:flex w-28 justify-center items-center">
-                                    Q60.00
-                                </div>
-                                <div class="hidden md:flex w-28 justify-end items-center ">
-                                    Q60.00
-                                </div>
-                            </div>
-                            <!-- Producto 3: Hamburguesa Doble (con nota) -->
-                            <div class="flex flex-col md:flex-row md:items-center bg-gray-50 rounded p-2">
-                                <div class="flex-1">
-                                    <div class="font-medium md:font-normal">Hamburguesa Doble</div>
-                                    <div class="text-xs text-blue-600">Nota: Sin pepinillos</div>
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-700">
-                                    <span class="font-semibold">Cantidad:</span>&nbsp;1
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-700">
-                                    <span class="">Precio:</span>&nbsp;Q60.00
-                                </div>
-                                <div class="flex md:hidden text-sm text-gray-800 font-semibold">
-                                    <span class="font-semibold">Subtotal:</span>&nbsp;Q60.00
-                                </div>
-                                <div class="hidden md:flex w-24 justify-center items-center text-gray-700">
-                                    1
-                                </div>
-                                <div
-                                    class="hidden md:flex w-28 justify-center items-center text-gray-700 font-semibold">
-                                    Q60.00
-                                </div>
-                                <div class="hidden md:flex w-28 justify-end items-center text-gray-800 font-semibold">
-                                    Q60.00
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Total -->
-                        <div class="text-right text-lg font-bold text-gray-800 border-t pt-4">
-                            Total: Q150.00
-                        </div>
+            <!-- Panel modal centrado para detalles de orden -->
+            <div id="order-details-panel"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 hidden">
+                <div class="bg-white w-full max-w-5xl rounded-lg shadow-xl p-6 relative">
+                    <button id="close-order-details"
+                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none">
+                        &times;
+                    </button>
+                    <div id="order-details-content"></div>
+                    <div class="mt-6 flex justify-end space-x-2">
+                        <button id="print-invoice-btn"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded shadow focus:outline-none">
+                            Imprimir factura
+                        </button>
+                        <button id="send-email-btn"
+                            class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded shadow focus:outline-none">
+                            Enviar por correo
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        
     </div>
 
 </body>

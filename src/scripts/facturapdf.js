@@ -1,5 +1,5 @@
 function generarPDFFactura(order) {
-  console.log(order)
+  alert('Se descargo el PDF.');
   const { jsPDF } = window.jspdf;
   // 80mm de ancho, alto dinámico (por ejemplo, 150mm)
   const pdf = new jsPDF({
@@ -22,13 +22,13 @@ function generarPDFFactura(order) {
   pdf.line(10, y, 70, y); // línea horizontal
   y += 5;
   //DATOS DEL CLIENTE
-  pdf.text(`Cliente: ${order.newOrder.customer.name}`, 10, y);
+  pdf.text(`Cliente: ${order.customer.name}`, 10, y);
   y += 5;
-  pdf.text(`NIT: ${order.newOrder.customer.NIT}`, 10, y);
+  pdf.text(`NIT: ${order.customer.NIT}`, 10, y);
   y += 5;
   //TITULOS
   pdf.setFontSize(10);
-  pdf.text(`Orden#${order.newOrder.id}`, 40, y, { align: 'center' });
+  pdf.text(`Orden#${order.id}`, 40, y, { align: 'center' });
   y += 5;
   pdf.setFontSize(8);
   pdf.text('Producto', 10, y);
@@ -37,7 +37,7 @@ function generarPDFFactura(order) {
   y += 5;
 
 
-  const productosAgrupados = agruparProductosPorId(order.newOrder.products);
+  const productosAgrupados = agruparProductosPorId(order.products);
   //console.log(productosAgrupados);
 
   for(var i = 0; i<productosAgrupados.length; i++){
@@ -53,10 +53,10 @@ function generarPDFFactura(order) {
   }
   pdf.line(10, y, 70, y);
   y += 5;
-  const tip = Number(order.newOrder.tip).toFixed(2);
+  const tip = Number(order.tip).toFixed(2);
   pdf.text(`Propina Q${tip}`, 50, y);
   y += 5
-  const subtotal = order.newOrder.products.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = order.products.reduce((sum, item) => sum + item.price, 0);
   pdf.text(`IVA Q${(subtotal*.12).toFixed(2)}`, 50, y);
   y += 5;
   pdf.line(10, y, 70, y);
@@ -69,7 +69,7 @@ function generarPDFFactura(order) {
   pdf.setFontSize(8);
   pdf.text('¡Gracias por su compra!', 40, y, { align: 'center' });
 
-  pdf.save(`ORD${order.newOrder.id}_FACT`);
+  pdf.save(`ORD${order.id}_FACT`);
 }
 
 
