@@ -1,3 +1,6 @@
+07/01/2025 Julio
+-orderHistory is complete, it displays all items on a list and then it opens a modal to show the selected transaction details.
+
 06/25/2025  Julio
 -Created ordersHistory.js script to display the list of orders in lines on the Historial de Ordenes page.
 
