@@ -57,12 +57,12 @@ function renderCart() {
 
 function createOrder() {
     if(cartItems.length >0){
-        RegisterOrder(cartItems);
-        console.log(cartItems)
-        // Redirigimos a la página de la orden
-        window.location.href = 'ordenesPage.html';
+        if(RegisterOrder(cartItems)){
+            // Redirigimos a la página de la orden
+            window.location.href = 'ordenesPage.html';
+        }
     }else{
-        console.log("Agregue productos antes de crear orden")
+        alert("Agregue productos antes de crear orden")
     }
     
 }

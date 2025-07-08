@@ -1,3 +1,8 @@
+07/07/2025 Julio
+-Fixed a bug when creating an order, in the name input box if the field was empty or if it was cancelled
+the order will get created without a name.
+-Added subtotal, branch properties in orders
+
 07/01/2025 Julio
 -orderHistory is complete, it displays all items on a list and then it opens a modal to show the selected transaction details.
 

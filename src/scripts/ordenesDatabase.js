@@ -3,6 +3,8 @@ let orderObj = {
     orderDate: new Date("01-01-2001"),
     status: "Nueva",
     tip : 0,
+    subtotal : 0,
+    branch_id:1,
     employee: {
         id: 1,
         name: "Angel Beb",
@@ -25,10 +27,15 @@ orderObj.status = "Entregado";
 //console.log(order)
 
 function RegisterOrder(cartItems) {
+    const name = prompt("Ingrese nombre del cliente");
+    if(name==="" || name === null){
+        alert("Ingreso de orden cancelado o no se ingreso nombre")
+        return false
+    }
     const newOrder = structuredClone(orderObj); //Clonar original para que los cambios no afecten a la misma orden y cada una sea independiente
     newOrder.id = GenerateOrderId();
     newOrder.products = cartItems;
-    newOrder.customer.name = prompt("Ingrese nombre del cliente");
+    newOrder.customer.name = name;
     newOrder.orderDate = new Date();
     newOrder.status = "En preparacion";
 
@@ -36,6 +43,7 @@ function RegisterOrder(cartItems) {
     console.log(orders)
     orders.push({ newOrder });
     localStorage.setItem('orders', JSON.stringify(orders));
+    return true;
 }
 
 function UpdateOrders(updatedOrders) {
